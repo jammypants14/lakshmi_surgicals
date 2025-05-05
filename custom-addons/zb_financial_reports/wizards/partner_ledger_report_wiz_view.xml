@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_ledger_report_wiz_form" model="ir.ui.view">
+		    <field name="name">partner.ledger.report.wiz.form</field>
+		    <field name="model">partner.ledger.report.wiz</field>
+		    <field name="arch" type="xml">
+		        <form string="Partner Ledger">
+		                    <group>
+			                    <group>
+			                        <field name="from_date" required ="1"/>
+			                        <field name="to_date"/>
+			                       <!--  <field name="partner_ids" widget="many2many_tags"/> -->
+			                        <field name="account_type" />
+			                        <field name="account_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}"/>
+			                        <field name="show_draft" />
+			                    </group>
+			                    <group>
+			                    	<field name="analytic_account_id" options="{'no_create': True, 'no_create_edit': True}"/>
+			                    	<field name="group_by"/>
+			                    	<field name="is_foreign_currency" groups="base.group_multi_currency"/>
+			                    	<field name="outstanding_only" />
+			                    	<field name="search_field"/>
+			                    </group>
+		                    </group>
+		                <!-- Footer with Action Buttons -->
+		                <footer>
+		                    <button
+		                        name="print_partner_ledger_xlsx"
+		                        string="Print PDF"
+		                        type="object"
+		                        class="oe_highlight"
+		                        default_focus="1"
+		                    />
+		                    <button string="Cancel" class="oe_link" special="cancel"/>
+		                </footer>
+		        </form>
+		    </field>
+		</record>
+                
+</data>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	
+	<template id="report_stock_operations_inherit_zb_lakshmi_surgicals" inherit_id="stock.report_picking">
+			<xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+				<attribute name="t-call">zb_lakshmi_customizations.external_layout_custom_po_kerala</attribute>
+			</xpath>
+	</template>
+	
+	<template id="report_delivery_slip_inherit_zb_lakshmi_surgicals" inherit_id="stock.report_delivery_document">
+			<xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+				<attribute name="t-call">zb_lakshmi_customizations.external_layout_custom_po_kerala</attribute>
+			</xpath>
+			
+			<xpath expr="//table[@name='stock_move_line_table']/thead/tr/th[@name='lot_serial']" position="after">
+				<th name="lot_expiration_date" t-if="has_serial_number">Lot Expiration Date</th>
+			</xpath>	
+			
+			<xpath expr="//t[@t-set='has_serial_number'][2]" position="replace">
+			    <t t-set="has_serial_number" t-value="o.move_line_ids.mapped('lot_id')" />
+			</xpath>	
+	</template>
+	
+	<template id="report_delivery_slip_inherit_lot_expiry_zb_lakshmi_surgicals" inherit_id="stock.stock_report_delivery_has_serial_move_line">
+			<xpath expr="//td[@name='move_line_lot_quantity']" position="before">
+				<t t-if="has_serial_number" name="move_line_lot_expiry">
+		            <td><span t-field="move_line.expiration_date" /></td>
+		        </t>
+			</xpath>	
+	</template>
+
+</odoo>

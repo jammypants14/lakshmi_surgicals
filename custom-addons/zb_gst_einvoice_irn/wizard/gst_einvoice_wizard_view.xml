@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+    	<record id="gst_einvoice_wiz_view_form" model="ir.ui.view">
+            <field name="name">gst.einvoice.wizard.form</field>
+            <field name="model">gst.einvoice.wizard</field>
+            <field name="arch" type="xml">
+                <form string="E-way Bill Details">
+                  <sheet>
+				  </sheet>
+				  <footer>
+               		<button type="object" name="action_submit" string="Print" class="oe_highlight"> </button>
+        			<button string="Cancel" class="oe_link" special="cancel"/>
+        		 </footer>
+               </form>
+            </field>
+        </record>
+        
+        <record id="gst_eway_bill_wiz_view_form" model="ir.ui.view">
+            <field name="name">gst.einvoice.wizard.form</field>
+            <field name="model">gst.einvoice.wizard</field>
+            <field name="arch" type="xml">
+                <form string="E-way Bill Details">
+                  <sheet>
+				  </sheet>
+				  <footer>
+        			<button type="object" name="action_eway_submit" string="Print" class="oe_highlight"> </button>
+        			<button string="Cancel" class="oe_link" special="cancel"/>
+        		 </footer>
+               </form>
+            </field>
+        </record>
+        
+         <record id="action_einvoice_wiz" model="ir.actions.act_window">
+	        <field name="name">E-Invoice Bill</field>
+	        <field name="res_model">gst.einvoice.wizard</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="view_id" ref="zb_gst_einvoice_irn.gst_einvoice_wiz_view_form"/>
+	        <field name="context">{}</field>
+	        <field name="target">new</field>
+    	</record>
+    	
+    </data>
+</odoo>
+
+
+

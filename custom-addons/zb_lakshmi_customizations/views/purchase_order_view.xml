@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_order_form_inherit_l10n_in_purchase" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.l10n.in.purchase</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+            	<page name="specs">
+            		<group>
+            			<field name="cust_name"/>
+            			<field name="end_cust_name"/>
+            			<field name="cust_po_number"/>
+            			<field name="end_cust_po_number"/>
+            			<field name="cust_po_date"/>
+            			<field name="cust_quote_id"/>
+            			<field name="cust_service_id"/>
+            			<field name="cust_tendor_no"/>
+            		</group>
+            	</page>
+            	 
+            </xpath>
+        </field>
+    </record>
+</odoo>

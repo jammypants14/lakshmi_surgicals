@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="main_information_inherit" inherit_id="zb_gst_invoice_qweb.main_information">
+        <xpath expr="//table/tbody/tr[4]/td[1]" position="after">
+                <td style="padding:2px;">
+                    Sales Person:
+                    <br />
+                    <b>
+                        <span t-field="o.invoice_user_id" />
+                    </b>
+                </td>
+        </xpath>
+    </template>
+    
+    <template id="table_contents_inherit" inherit_id="zb_gst_invoice_qweb.table_contents">
+        
+        <xpath expr="//thead/tr/th[7]" position="replace">
+	        <!-- Removed -->
+	    </xpath>
+	
+	    <!-- Remove the 'Bags' td from each invoice line -->
+	    <xpath expr="//tbody//t/tr/td[7]" position="replace">
+	        <!-- Removed -->
+	    </xpath>
+        <!-- Add "MRP" column header after QTY -->
+        <xpath expr="//thead/tr/th[normalize-space()='QTY']" position="after">
+            <th style="padding:2px;text-align:left;font-size:13px;width: 8%;">MRP/Margin</th>
+        </xpath>
+
+        <!-- Add MRP value in row after QTY -->
+        <xpath expr="//tbody//tr/td[5]" position="after">
+            <td style="padding:2px;text-align:right;">
+            <t t-if="line.product_id and line.product_id.list_price != 0.0">
+                <span t-field="line.product_id.list_price" />
+                </t>
+            </td>
+            
+        </xpath>
+        
+
+    </template>
+    
+    <template
+			id="report_invoice_document_inherit_zb_lakshmi_surgicals"
+			inherit_id="account.report_invoice_document">
+			
+			
+			<xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+				<attribute name="t-call">zb_lakshmi_customizations.external_layout_custom_po_kerala</attribute>
+			</xpath>
+			
+	</template>
+</odoo>

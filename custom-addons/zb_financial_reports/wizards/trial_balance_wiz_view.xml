@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_trial_balance_model_form">
+            <field name="name">trial.balance.wiz.form</field>
+            <field name="model">trial.balance.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Trial Balance">
+                    <group>
+	                    <group>
+	                        <field name="from_date" required = "1"/>
+	                        <field name="to_date"/>
+	                        <!-- <field name="account_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}"/>
+	                    	<field name="company_id"  options="{'no_create_edit': True, 'no_create': True,'no_open':True}" readonly="1"/> -->
+	                    </group>
+	                    <group>
+	                    	<field name="sheet_type" readonly="1" invisible="1"/>
+	                    	<field name="display_type" required = "1" invisible="sheet_type != 'trial_balance'"/>
+	                    	<field name="hide_zero_balance"/>
+	                    	<field name="show_draft" />
+	                    	<field name="show_debit_credit" invisible="not context.get('profit_loss', False)"/>
+	                    	
+	                    </group>
+                    </group>
+                    
+                    <div>
+	                    <button name="load_data" string="Load Data" type="object"
+	                            class="oe_highlight" />or
+	                    <button name="print_trial_balance_xlsx" string="Print XLS" type="object"
+		                            class="oe_highlight" />      
+                    </div>
+                    
+                    <div string="Trial Balance Lines" invisible="display_type == 'complete'">
+                        <field name="trial_balance_line_ids" mode="list" nolabel="1">
+                            <list editable="bottom" create="false" delete="false" limit="1000">
+                            	<field name="code" readonly="1"/>
+                                <field name="name" readonly="1"/>
+                                <field name="type" readonly="1"/>
+                                <field name="opening_balance" readonly="1" sum="Total" column_invisible="context.get('profit_loss', False)"/>
+                                <field name="debit" readonly="1" sum="Total" column_invisible = "context.get('profit_loss', False) and not parent.show_debit_credit"/>
+                                <field name="credit" readonly="1" sum="Total" column_invisible = "context.get('profit_loss', False) and not parent.show_debit_credit"/>
+                                <!-- <field name="allocation" options="{'currency_field': 'currency_id'}"/> -->
+                                <field name="closing_balance" readonly="1" sum="Total" column_invisible = "context.get('profit_loss', False) or context.get('balance_sheet', False)"/>
+                                <field name="closing_balance" string="Balance" readonly="1" sum="Total" column_invisible="not context.get('profit_loss', False) and not context.get('balance_sheet', False)"/>
+                                <button name="open_general_ledger" string=">" type="object" class="oe_highlight" />
+                            </list>
+                        </field>
+                    </div>
+                    
+                    
+                    <div string="Trial Balance Complete Lines" invisible="display_type == 'balance_only'">
+                        <field name="trial_balance_complete_line_ids" mode="list" nolabel="1">
+                            <list editable="bottom" create="false" delete="false" limit="500">
+                            	<field name="code" readonly="1"/>
+                                <field name="name" readonly="1"/>
+                                <field name="type" readonly="1"/>
+                                <field name="debit1" readonly="1" sum="Total"/>
+                                <field name="credit1" readonly="1" sum="Total"/>
+                                <field name="opening_balance1" readonly="1" sum="Total"/>
+                                <field name="debit2" readonly="1" sum="Total"/>
+                                <field name="credit2" readonly="1" sum="Total"/>
+                                <field name="opening_balance2" readonly="1" sum="Total"/>
+                                <field name="debit3" readonly="1" sum="Total"/>
+                                <field name="credit3" readonly="1" sum="Total"/>
+                                <field name="opening_balance3" readonly="1" sum="Total"/>
+                            </list>
+                        </field>
+                    </div>
+                    
+                </form>
+            </field>
+        </record>
+        
+        
+    <record id="balance_sheet_model_actions" model="ir.actions.act_window">
+	    <field name="name">Balance Sheet Action</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">trial.balance.wiz</field>
+	    <field name="view_mode">form</field>
+	    <field name="view_id" ref="zb_financial_reports.view_trial_balance_model_form"/>
+	    <field name="target">inline</field>
+	    <field name="context">{'balance_sheet': True}</field>
+	</record>
+	<record id="profit_loss_model_actions" model="ir.actions.act_window">
+	    <field name="name">Profit And Loss Action</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">trial.balance.wiz</field>
+	    <field name="view_mode">form</field>
+	    <field name="view_id" ref="zb_financial_reports.view_trial_balance_model_form"/>
+	    <field name="target">inline</field>
+	    <field name="context">{'profit_loss': True}</field>
+	</record>
+        
+	<record id="trial_balance_model_action" model="ir.actions.act_window">
+	    <field name="name">Trial Balance Action</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">trial.balance.wiz</field>
+	    <field name="view_mode">form</field>
+	    <field name="view_id" ref="view_trial_balance_model_form"/>
+	    <field name="target">inline</field>
+	</record>
+	
+
+    </data>
+</odoo>

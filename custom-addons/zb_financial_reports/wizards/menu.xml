@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<menuitem
+	      id="financial_reports_main_menu" name="Finance Reports"
+	      parent="account.menu_finance_reports"
+	      sequence="6"/>
+	
+	<menuitem id="general_ledger_model_menu" name="General Ledger"
+  		parent="zb_financial_reports.financial_reports_main_menu" action="zb_financial_reports.general_ledger_model_action"
+  		sequence="1"/>
+	
+	<menuitem id="partner_summary_model_menu" name="Partner Summary"
+  		parent="zb_financial_reports.financial_reports_main_menu" action="zb_financial_reports.partner_summary_model_action"
+  		sequence="2"/>
+  	
+  	<menuitem id="partner_ledger_model_menu" name="Partner Ledger"
+  		parent="zb_financial_reports.financial_reports_main_menu" action="zb_financial_reports.partner_ledger_model_action"
+  		sequence="8"/>
+  	
+  	<menuitem id="trial_balance_model_menu" name="Trial Balance"
+  		parent="zb_financial_reports.financial_reports_main_menu" action="zb_financial_reports.trial_balance_model_action"
+  		sequence="9"/>
+  	<menuitem id="ageing_report_menu" name="Ageing Report"
+  		parent="zb_financial_reports.financial_reports_main_menu" action="zb_financial_reports.ageing_report_wizard_action"
+  		sequence="10"/>
+  	<menuitem id="day_book_model_menu" name="Day Book (Cash)"
+  		parent="zb_financial_reports.financial_reports_main_menu" action="zb_financial_reports.day_book_model_action"
+  		sequence="11"/>
+  	<menuitem id="balance_confirmation_model_menu" name="Balance Confirmation"
+  		parent="zb_financial_reports.financial_reports_main_menu" action="zb_financial_reports.balance_confirmation_wiz_action"
+  		sequence="12"/>
+  		
+        
+        
+        <menuitem id="balance_sheet_model_menu" 
+                  name="Balance Sheet"
+  				  parent="zb_financial_reports.financial_reports_main_menu" 
+  				  action="zb_financial_reports.balance_sheet_model_actions"
+  			      sequence="9"/>
+  		<menuitem id="profit_loss_model_menu" 
+                  name="Profit Loss"
+  				  parent="zb_financial_reports.financial_reports_main_menu" 
+  				  action="zb_financial_reports.profit_loss_model_actions"
+  			      sequence="9"/>
+        
+		 
+</odoo>

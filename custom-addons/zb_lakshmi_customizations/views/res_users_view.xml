@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="view_company_form_inherit_zb_lakshmi_cust" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.zb.lakshmi.cust</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']" position="inside">
+                <div class="oe_button_box" name="custom_company_images">
+                    <div class="row">
+                        <div class="col-6">
+                            <field name="company_seal" widget="image"/>
+                        </div>
+                        <div class="col-6">
+                            <field name="signature" widget="image"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</data>
+
+</odoo>

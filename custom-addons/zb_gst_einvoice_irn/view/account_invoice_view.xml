@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="invoice_tree_tree_gm" model="ir.ui.view">
+		<field name="name">account.move.gm</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_out_invoice_tree" />
+		<field name="arch" type="xml">
+
+			<xpath expr="//list" position="attributes">
+				<attribute name="decoration-success">einvoice_generated == True
+				</attribute>
+
+			</xpath>
+			<xpath expr="//field[@name='currency_id']" position="after">
+				<field name="einvoice_generated" column_invisible="1"></field>
+			</xpath>
+
+		</field>
+    </record>
+
+	<record id="invoice_form_inherit_gst_einvoice_bill" model="ir.ui.view">
+		<field name="name">account.move.form.inherit.gst.einvoice.bill</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+        
+        	<xpath expr="//field[@name='state']" position="before">
+                <button name="%(custom_gst_invoice_action)d" string="Print GST Invoice" invisible = "state != 'posted' or move_type not in ['out_invoice', 'out_refund', 'in_refund','in_invoice']" type="action" class="oe_highlight" />
+            </xpath>
+			
+        	<xpath expr="//page[@name='other_info']" position="after">
+				<page string="E-Way Bill Details" name="eway_bill_details" invisible =" move_type != 'out_invoice'">
+					<group>
+						<group>
+    
+                             <field name="eway_supply_type"/>
+                             <field name="eway_distance"/>
+                             <field name="transaction_type"/>
+                             <field name="eway_transport_doc_no"/>
+                             <field name="eway_transporter"/>
+	                         <field name="eway_transporter_id"/>
+	                         <field name="eway_transporter_type"/>
+	                         <field name="eway_transport_date"/>
+	                         <field name="eway_transportation_mode"/>
+                        </group>
+                        <group>
+                        	<field name="eway_sub_supply_type"/>
+                        	<field name="eway_document_type"/>
+                        	<field name="eway_vehicle_no"/>
+                        	<field name="eway_bill_no" readonly="1" force_save="1"/>
+                        	<field name="eway_bill_date" readonly="1" force_save="1"/>
+                        	<field name="eway_bill_valid_upto" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                </page>
+				<page string="IRN Details" name="irn_bill_details" invisible = "move_type != 'out_invoice'">
+					<group>
+						<group>
+                             <field name="ack_no"/>
+                             <field name="irn"/>
+							 <field name="qr_code" widget='image' class="oe_avatar" readonly="0"/>
+                        </group>
+                        <group>
+                        	<field name="ack_date"/>
+                        	<field name="scaned_qr_code"/>
+                            <field name="einvoice_generated" invisible="1"/>
+                            <field name="eway_generated" invisible="1"/>
+                        </group>
+                    </group>
+                </page>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='invoice_line_ids']/list" position="inside">
+                <field name="cgst_amount" column_invisible="1" />
+                <field name="sgst_amount" column_invisible="1" />
+                <field name="igst_amount" column_invisible="1" />
+            </xpath>
+        </field>
+	</record>
+	
+        <record id="action_generate_irn" model="ir.actions.server">
+            <field name="name">Create E-Invoice (GST)</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="groups_id" eval="[(4, ref('zb_gst_einvoice_irn.group_einvoice_gst'))]" />
+            <field name="state">code</field>
+            <field name="code">
+            	for record in records:
+            		if record.state == "posted":
+            			record.fetch_irn_from_gst_portal()
+            		else:
+            			raise UserError("This Action possible only on Posted Invoices")
+            </field>
+        </record>
+        
+        
+	<record id="action_generate_irn_eway_bill" model="ir.actions.server">
+         <field name="name">Create E-Way Bill (GST) Using IRN</field>
+         <field name="type">ir.actions.server</field>
+         <field name="model_id" ref="model_account_move"/>
+         <field name="binding_model_id" ref="model_account_move"/>
+         <field name="groups_id" eval="[(4, ref('zb_gst_einvoice_irn.group_einvoice_gst'))]" />
+         <field name="state">code</field>
+         <field name="code">
+         	for record in records:
+         		if record.state == "posted":
+         			record.fetch_irn_eway_from_gst_portal()
+         		else:
+         			raise UserError("This Action possible only on Posted Invoices")
+         </field>
+     </record>
+  
+	<record id="action_generate_eway_bill" model="ir.actions.server">
+        <field name="name">Create E-Way Bill (GST)</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_account_move"/>
+        <field name="binding_model_id" ref="model_account_move"/>
+        <field name="groups_id" eval="[(4, ref('zb_gst_einvoice_irn.group_einvoice_gst'))]" />
+        <field name="state">code</field>
+        <field name="code">
+        	for record in records:
+        		if record.state == "posted":
+        			record.create_eway_bill_from_gst_portal()
+        		else:
+        			raise UserError("This Action possible only on Posted Invoices")
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_ageing_report_wizard_form">
+            <field name="name">view.ageing.report.wizard.form</field>
+            <field name="model">ageing.report.wizard</field>
+            <field name="arch" type="xml">
+                 <form >
+                    <group>
+	                    <group>
+	                        <field name="date_as_on" required = "1"/>
+	                        <field name="account_type"/>
+	                        <field name="account_ids" widget="many2many_tags" options="{'no_create_edit': True, 'no_create': True}"/>
+	                        <field name="child_company_ids" widget="many2many_tags" options="{'no_create_edit': True, 'no_create': True}" invisible="1"/>
+	                        <field name='amount'/>
+	                    </group>
+	                    	
+	                    <group>
+	                    	<field name="partner_type" />
+	                    	<field name="based_on" />
+	                    	<field name="age_type" />
+	                    	<field name="partner_category_ids" widget="many2many_tags" options="{'no_create_edit': True, 'no_create': True}" invisible="0"/>
+	                    	<field name="company_id"  options="{'no_create_edit': True, 'no_create': True,'no_open':True}" readonly="1"/>
+	                    	
+	                    </group>
+                    </group>  
+                    <br></br>
+                    <div>
+	                    <button name="load_data" string="Load Data" type="object"
+	                            class="oe_highlight" />  or
+	                    <button name="print_xlsx" string="Print XLS" type="object"
+		                            class="oe_highlight" />  or
+		                <button name="partner_ageing_pdf" string="Print PDF" type="object"
+		                            class="oe_highlight" />    
+                    </div>
+                    <br></br>							
+									<field name="partner_ids">
+										<list editable="bottom" create="false" delete="false" limit="500">
+											<field name="partner_id" width="30%" readonly="1"/>
+											<field name="days_0_30" sum="Total" readonly="1" column_invisible="parent.age_type != 'age_30'"/>
+											 <button name="action_open_move_line" type="object" icon="fa-arrow-right" context="{'days_0_30':days_0_30}" column_invisible="parent.age_type != 'age_30'"/> 
+											<field name="days_31_60" sum="Total" readonly="1" column_invisible="parent.age_type != 'age_30'"/>	
+											 <button name="action_open_move_line" type="object" icon="fa-arrow-right" context="{'days_31_60':days_31_60}" column_invisible="parent.age_type != 'age_30'"/> 
+											<field name="days_61_90" sum="Total" readonly="1" column_invisible="parent.age_type != 'age_30'" />
+											 <button name="action_open_move_line" type="object" icon="fa-arrow-right" context="{'days_61_90':days_61_90}" column_invisible="parent.age_type != 'age_30'"/> 
+											<field name="days_91_180" sum="Total" readonly="1" column_invisible="parent.age_type != 'age_30'"/>
+											 <button name="action_open_move_line" type="object" icon="fa-arrow-right" context="{'days_91_180':days_91_180}" column_invisible="parent.age_type != 'age_30'"/> 
+											<field name="days_181_365" sum="Total" readonly="1" column_invisible="parent.age_type != 'age_30'" />
+											 <button name="action_open_move_line" type="object" icon="fa-arrow-right" context="{'days_181_365':days_181_365}" column_invisible="parent.age_type != 'age_30'"/> 
+											<field name="days_366_plus" sum="Total" readonly="1" column_invisible="parent.age_type != 'age_30'"/>
+											 <button name="action_open_move_line" type="object" icon="fa-arrow-right" context="{'days_366_plus':days_366_plus}" column_invisible="parent.age_type != 'age_30'"/> 
+											
+											<field name="days_0_45" sum="Total" readonly="1" column_invisible="parent.age_type != 'age_45'" />
+											<button name="action_open_move_line_45_days" type="object" icon="fa-arrow-right" context="{'days_0_45':days_0_45}" column_invisible="parent.age_type != 'age_45'"/> 
+						                    <field name="days_46_90"  sum="Total" readonly="1" column_invisible="parent.age_type != 'age_45'" />
+						                    <button name="action_open_move_line_45_days" type="object" icon="fa-arrow-right" context="{'days_46_90':days_46_90}" column_invisible="parent.age_type != 'age_45'"/> 
+						                    <field name="dayss_91_180"  sum="Total" readonly="1" column_invisible="parent.age_type != 'age_45'" />
+						                    <button name="action_open_move_line_45_days" type="object" icon="fa-arrow-right" context="{'dayss_91_180':dayss_91_180}" column_invisible="parent.age_type != 'age_45'"/> 
+						                    <field name="dayss_181_365"  sum="Total" readonly="1" column_invisible="parent.age_type != 'age_45'" />
+						                    <button name="action_open_move_line_45_days" type="object" icon="fa-arrow-right" context="{'dayss_181_365':dayss_181_365}" column_invisible="parent.age_type != 'age_45'"/> 
+						                    <field name="dayss_366_plus" sum="Total" readonly="1" column_invisible="parent.age_type != 'age_45'" />
+						                    <button name="action_open_move_line_45_days" type="object" icon="fa-arrow-right" context="{'dayss_366_plus':dayss_366_plus}" column_invisible="parent.age_type != 'age_45'"/> 
+											
+											
+											<field name="month_0_6" sum="Total" readonly="1" column_invisible="parent.age_type != 'yearly'" />
+											<button name="action_open_move_line_years" type="object" icon="fa-arrow-right" context="{'month_0_6':month_0_6}" column_invisible="parent.age_type != 'yearly'"/> 
+						                    <field name="month_6_12"  sum="Total" readonly="1" column_invisible="parent.age_type != 'yearly'" />
+						                    <button name="action_open_move_line_years" type="object" icon="fa-arrow-right" context="{'month_6_12':month_6_12}" column_invisible="parent.age_type != 'yearly'"/> 
+						                    <field name="month_12_24"  sum="Total" readonly="1" column_invisible="parent.age_type != 'yearly'" />
+						                    <button name="action_open_move_line_years" type="object" icon="fa-arrow-right" context="{'month_12_24':month_12_24}" column_invisible="parent.age_type != 'yearly'"/> 
+						                    <field name="month_24_36"  sum="Total" readonly="1" column_invisible="parent.age_type != 'yearly'" />
+						                    <button name="action_open_move_line_years" type="object" icon="fa-arrow-right" context="{'month_24_36':month_24_36}" column_invisible="parent.age_type != 'yearly'"/> 
+						                    <field name="month_36_plus" sum="Total" readonly="1" column_invisible="parent.age_type != 'yearly'" />
+						                    <button name="action_open_move_line_years" type="object" icon="fa-arrow-right" context="{'month_36_plus':month_36_plus}" column_invisible="parent.age_type != 'yearly'"/> 
+											<field name="total" sum="Total" readonly="1"/>
+											<button name="action_open_all_move_lines" type="object" icon="fa-arrow-right"/> 
+											
+											
+											
+										</list>									
+									</field>                                 
+                </form>
+            </field>
+        </record>
+        
+	<record id="ageing_report_wizard_action" model="ir.actions.act_window">
+	    <field name="name">Ageing Report Action</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">ageing.report.wizard</field>
+	    <field name="view_mode">form</field>
+	    <field name="view_id" ref="view_ageing_report_wizard_form"/>	    
+	</record>
+	
+
+    </data>
+</odoo>

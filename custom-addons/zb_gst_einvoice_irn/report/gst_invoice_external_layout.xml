@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="gst_invoice_external_layout">
+  			<div t-attf-class="header o_company_#{o.id}_layout" t-att-style="report_header_style">
+			    <div class="o_boxed_header">
+			      	<table class="table table-borderless">
+			        	<tr>
+			          		<td rowspan="2" style="width: 30%">
+					            <img t-if="env.company.logo" t-att-src="image_data_uri(env.company.logo)" alt="Logo" style="height: 90px;" />
+					     	</td>
+			        	</tr>
+			   		</table>
+			    </div>
+			</div>
+
+  			<div class="article o_report_layout_standard" style="font-size:13px;">
+   	 			<t t-raw="0" />
+  			</div>
+		</template>
+    </data>
+</odoo>

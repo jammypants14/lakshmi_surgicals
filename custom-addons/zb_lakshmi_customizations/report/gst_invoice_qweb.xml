@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_bottom_information_lakshmi_customisation" inherit_id="zb_gst_invoice_qweb.bottom_information">
+        <xpath expr="//table[@class='table table-bordered']/tr/td[1]" position="replace">
+        <td colspan="2" rowspan="2" width="360px" style="padding:2px;">
+	                <p t-field="o.bank_details" />
+	     	</td>
+                
+        </xpath>
+    </template>
+    </odoo>

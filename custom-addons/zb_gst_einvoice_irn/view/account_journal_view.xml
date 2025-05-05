@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record id="journal_form_inherit_gst_einvoice" model="ir.ui.view">
+		<field name="name">account.journal.form.inherit.gst.einvoicel</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+	        <xpath expr="//notebook" position="inside">
+	            <page string="Mastergst E-invoice Details">
+	    	       	<group name="api_info" string="Mastergst E-invoice Details">
+						<field name="api_username"/>
+						<field name="api_password"/>
+						<field name="ip_address"/>
+						<field name="api_client_id"/>
+						<field name="api_client_secret"/>
+						<field name="api_gstin"/>
+						<field name="auth_token"/>
+						<field name="api_auth_url"/>
+						<field name="api_einvoice_url"/>
+						<field name="eway_irn_generate_url"/>
+					</group>
+					 <group name="eway_info" string="Mastergst E-way Details">
+						<field name="eway_username"/>
+						<field name="eway_password"/>
+						<field name="eway_ip_address"/>
+						<field name="eway_client_id"/>
+						<field name="eway_client_secret"/>
+						<field name="eway_gstin"/>
+						<field name="eway_auth_url"/>
+						<field name="eway_generate_url"/>
+					</group> 
+				</page>            
+           </xpath>
+   		</field>
+   	</record>
+  </odoo>

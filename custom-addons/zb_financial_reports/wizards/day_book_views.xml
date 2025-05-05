@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_day_book_model_form">
+            <field name="name">day.book.wiz.form</field>
+            <field name="model">day.book.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Day Book (Cash)">
+                    <group>
+	                    <group>
+	                        <field name="from_date" required="1"/>
+	                        <field name="to_date"/>
+	                        <field name="account_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}"/>
+	                    </group>
+	                    <group>
+	                    	
+	                    	<!-- <field name="show_draft"/> -->
+	                   		<field name="company_id"  options="{'no_create_edit': True, 'no_create': True,'no_open':True}" readonly="1"/>
+	                    </group>
+                    </group>
+                    
+                    <div>
+	                    <button name="load_data" string="Load Data" type="object"
+	                            class="oe_highlight" />or
+	                    <button name="print_daybook_xlsx" string="Print XLS" type="object"
+		                            class="oe_highlight" />      
+                    </div>
+                    
+                    <div string="Day Book Lines">
+                        <field name="day_book_line_ids" mode="list" nolabel="1">
+                            <list editable="bottom" create="false" limit="500">
+                            	<field name="name" nolabel="1" readonly="1"/>
+                                <field name="date" readonly="1"/>
+                                <!-- <field name="date_maturity" readonly="1"/> -->
+                                <field name="ref" readonly="1"/>
+                                <field name="label" readonly="1" optional="hide"/>
+                                <field name="account_id" readonly="1" optional="hide"/>
+                                <field name="counter_account" readonly="1" optional="hide"/>
+                                
+                                <field name="partner_id" readonly="1" optional="hide"/>
+                                <!-- <field name="analytic_account_id" readonly="1" optional="hide"/> -->
+                                <field name="debit" readonly="1" sum="Total Debit"/>
+                                <field name="credit" readonly="1" sum="Total Credit"/>
+                                <!-- <field name="allocation" options="{'currency_field': 'currency_id'}"/> -->
+                                <field name="balance" readonly="1"/>
+                                <button name="open_account_move" string=">" type="object" class="oe_highlight" invisible = "name != False"/>
+                            </list>
+                        </field>
+                    </div>
+                    
+                </form>
+            </field>
+        </record>
+        
+	<record id="day_book_model_action" model="ir.actions.act_window">
+	    <field name="name">Day Book Action</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">day.book.wiz</field>
+	    <field name="view_mode">form</field>
+	    <field name="view_id" ref="view_day_book_model_form"/>
+	    <field name="target">inline</field>
+	</record>
+	
+
+    </data>
+</odoo>

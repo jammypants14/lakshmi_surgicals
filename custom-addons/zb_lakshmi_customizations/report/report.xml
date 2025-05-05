@@ -1,0 +1,123 @@
+<odoo>
+<!--  <report-->
+<!--    id="action_report_custom_po"-->
+<!--    model="purchase.order"-->
+<!--    string="Custom PO Print"-->
+<!--    report_type="qweb-pdf"-->
+<!--    name="custom_po_report.report_purchase_custom_po"-->
+<!--    file="custom_po_report.report_purchase_custom_po"-->
+<!--    print_report_name="'PO - %s' % (object.name)"-->
+<!--  />-->
+<!-- <record id="po_print_delhi_paper_format" model="report.paperformat">
+	        <field name="name">PO print Delhi Paper Format</field>
+	        <field name="format">A4</field>
+	        <field name="orientation">Portrait</field>
+	        <field name="margin_top">30</field>
+	        <field name="margin_bottom">6</field>
+	        <field name="margin_left">3</field>
+	        <field name="margin_right">3</field>
+	        <field name="header_line" eval="False" />
+	        <field name="header_spacing">30</field>
+	    </record> -->
+ 
+  <record id="action_report_custom_po" model="ir.actions.report">
+            <field name="name">Purchase Order Print (Delhi)</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_lakshmi_customizations.report_purchase_custom_po</field>
+            <field name="report_file">zb_lakshmi_customizations.report_purchase_custom_po</field>
+            <field name="print_report_name">
+                ( 'Purchase Order - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <!--  <field name="paperformat_id" ref="po_print_delhi_paper_format" /> -->
+            <field name="binding_type">report</field>
+        </record>
+        
+        
+  <record id="action_report_custom_po_kerala" model="ir.actions.report">
+            <field name="name">Purchase Order Print (Kerala)</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_lakshmi_customizations.report_purchase_custom_po_kerala</field>
+            <field name="report_file">zb_lakshmi_customizations.report_purchase_custom_po_kerala</field>
+            <field name="print_report_name">
+                ( 'Purchase Order - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+  
+  <record id="action_report_po_base_value_only_delhi" model="ir.actions.report">
+            <field name="name">Print Base Value Only (Delhi)</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_lakshmi_customizations.report_po_base_value_only_delhi</field>
+            <field name="report_file">zb_lakshmi_customizations.report_po_base_value_only_delhi</field>
+            <field name="print_report_name">
+                ( 'Purchase Order - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+  <record id="action_report_po_base_value_only_kerala" model="ir.actions.report">
+            <field name="name">Print Base Value Only (Kerala)</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_lakshmi_customizations.report_po_base_value_only_kerala</field>
+            <field name="report_file">zb_lakshmi_customizations.report_po_base_value_only_kerala</field>
+            <field name="print_report_name">
+                ( 'Purchase Order - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+  
+   <record id="action_report_po_service_order_delhi" model="ir.actions.report">
+            <field name="name">Print Service Order (Delhi)</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_lakshmi_customizations.report_print_service_order_delhi</field>
+            <field name="report_file">zb_lakshmi_customizations.report_print_service_order_delhi</field>
+            <field name="print_report_name">
+                ( 'Purchase Order - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+   <record id="action_report_po_service_order_kerala" model="ir.actions.report">
+            <field name="name">Print Service Order (Kerala)</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_lakshmi_customizations.report_print_service_order_kerala</field>
+            <field name="report_file">zb_lakshmi_customizations.report_print_service_order_kerala</field>
+            <field name="print_report_name">
+                ( 'Purchase Order - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+   
+   <record id="action_report_custom_so_delhi" model="ir.actions.report">
+            <field name="name">Sale Order Print (Delhi)</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_lakshmi_customizations.report_sale_custom_so</field>
+            <field name="report_file">zb_lakshmi_customizations.report_sale_custom_so</field>
+            <field name="print_report_name">
+                ( 'Sale Order - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <!--  <field name="paperformat_id" ref="po_print_delhi_paper_format" /> -->
+            <field name="binding_type">report</field>
+        </record>
+
+	 <record id="action_report_custom_so_kerala" model="ir.actions.report">
+            <field name="name">Sale Order Print (Kerala)</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">zb_lakshmi_customizations.report_sale_custom_so_kerala</field>
+            <field name="report_file">zb_lakshmi_customizations.report_sale_custom_so_kerala</field>
+            <field name="print_report_name">
+                ( 'Sale Order - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <!--  <field name="paperformat_id" ref="po_print_delhi_paper_format" /> -->
+            <field name="binding_type">report</field>
+        </record>        
+  
+</odoo>

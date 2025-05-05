@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gst_reports,access_gst_reports,model_gst_reports,base.group_user,1,1,1,1
+access_gst_report_column,access_gst_report_column,model_gst_report_column,base.group_user,1,1,1,1
+access_csv_generator,access_csv_generator,model_csv_generator,base.group_user,1,1,1,1

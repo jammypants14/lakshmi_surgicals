@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_partner_summary_model_form">
+            <field name="name">partner.summary.wiz.form</field>
+            <field name="model">partner.summary.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Partner Summary">
+                    <group>
+	                    <group>
+	                        <field name="from_date" required = "1"/>
+	                        <field name="to_date"/>
+	                        <field name="account_type"/>
+	                        <field name="partner_tag_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}"/>
+	                        <field name='show_partner' invisible="1"/>
+							<field name="partner_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}" invisible="show_partner == True"/>
+							<field name="company_id"  options="{'no_create_edit': True, 'no_create': True,'no_open':True}" readonly="1"/>
+	                    </group>
+	                    <group>
+	                    	<field name="account_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}"/>
+	                    	<field name="analytic_account_id" options="{'no_create': True, 'no_create_edit': True}"/>
+	                    	<field name="label"/>
+	                    	<field name="group_by"/>
+	                    	<field name="show_draft"/>
+	                    	<field name="customers_for_the_period"/>
+	                    </group>
+                    </group>
+                    
+                    <div>
+	                    <button name="load_data" string="Load Data" type="object"
+	                            class="oe_highlight" />or
+	                    <button name="partner_summary_xlsx" string="Print XLS" type="object"
+		                            class="oe_highlight" /> or
+		                <button name="partner_summary_pdf" string="Print PDF" type="object"
+		                            class="oe_highlight" />
+                    </div>
+                    
+                    <div string="Partner Summary Lines">
+                        <field name="partner_summary_line_ids" mode="list" nolabel="1">
+                            <list editable="bottom" create="false" delete="false" limit="500">
+                            	<field name="name" readonly="1"/>
+                                <field name="opening_balance" readonly="1" sum="Total"/>
+                                <field name="debit" readonly="1" sum="Total"/>
+                                <field name="credit" readonly="1" sum="Total"/>
+                                <field name="closing_balance" readonly="1" sum="Total"/>
+                                <field name="balance_currency" readonly="1" sum="Total" optional="hide"/>
+                                <button name="open_partner_ledger" string=">" type="object" class="oe_highlight" />
+                            </list>
+                        </field>
+                    </div>
+                    
+                </form>
+            </field>
+        </record>
+        
+	<record id="partner_summary_model_action" model="ir.actions.act_window">
+	    <field name="name">Partner Summary Action</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">partner.summary.wiz</field>
+	    <field name="view_mode">form</field>
+	    <field name="view_id" ref="view_partner_summary_model_form"/>
+	    <field name="target">inline</field>
+	</record>
+	
+
+    </data>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="gst_invoice_report_paper_format" model="report.paperformat">
+        <field name="name">GST Invoice Report Paper Format</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">6</field>
+        <field name="margin_left">6</field>
+        <field name="margin_right">6</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">30</field>
+    </record>
+
+    <record id="gst_invoice_report_qweb_template" model="ir.actions.report">
+        <field name="name">GST Invoice</field>
+        <field name="model">custom.gst.invoice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zb_gst_invoice_qweb.report_gst_invoice_qweb</field>
+        <field name="report_file">zb_gst_invoice_qweb.report_gst_invoice_qweb</field>
+        <field name="paperformat_id" ref="gst_invoice_report_paper_format" />
+        <field name="print_report_name">('Invoice - ' + object.name)</field>
+        <field name="binding_model_id" eval="False" />
+        <field name="binding_type">report</field>
+    </record>
+    
+    <record id="gst_invoice_report_qweb_template_og_copy" model="ir.actions.report">
+        <field name="name">GST Invoice Original Copy</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">zb_gst_invoice_qweb.report_gst_invoice_qweb_og_copy</field>
+        <field name="report_file">zb_gst_invoice_qweb.report_gst_invoice_qweb_og_copy</field>
+        <field name="paperformat_id" ref="gst_invoice_report_paper_format" />
+        <field name="print_report_name">('Invoice - ' + object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

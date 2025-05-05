@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="balance_confirmation_wiz_form" model="ir.ui.view">
+            <field name="name">balance.confirmation.wiz.form</field>
+            <field name="model">balance.confirmation.wiz</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="date" required="True"/>
+                        <field name='partner_ids' widget='many2many_tags'/>
+                    </group>
+                    <footer>
+                        <button name="action_balance_confirmation_report" string="Print PDF" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="balance_confirmation_wiz_action" model="ir.actions.act_window">
+            <field name="name">Balance Confirmation</field>
+            <field name="res_model">balance.confirmation.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

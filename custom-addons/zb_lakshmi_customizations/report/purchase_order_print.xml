@@ -1,0 +1,280 @@
+<odoo>
+  <template id="report_purchase_custom_po">
+    <t t-call="zb_lakshmi_customizations.external_layout_custom_po_delhi">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+   
+          <div class="page" >
+            <div class="row" >
+              <div class="col-6" style="text-align:left;">
+                <strong><span t-esc="o.name.split('/')[1] if '/' in o.name else o.name"/></strong><br/>
+                <span t-field="o.date_order"/>
+              </div>
+            </div>
+           <!--  <br/>  -->
+            <p style="margin-top:10px;">
+<!--              <strong>To:</strong><br/>-->
+              <span t-field="o.partner_id.name"/><br/>
+              <span t-field="o.partner_id.street"/><br/>
+              <span t-field="o.partner_id.city"/> - <span t-field="o.partner_id.zip"/><br/>
+              <span t-field="o.partner_id.country_id.name"/>
+            </p>
+            <h2 style="text-align:center; color:black;margin-top:-30px;">Purchase Order</h2>
+            <span>Dear Sir,<br />Kindly supply the below instruments</span><br />
+           
+
+            <table cellpadding="0" cellspacing="0" class="table table-bordered " style="width:100%; border-collapse:collapse;">
+              <thead>
+                <tr style="background-color:#f2f2f2;height:20px;">
+<!--                  <th style="width:5%; align: center;">Sl No</th>-->
+                  <th class="text-center" style="width:5%;">Sl No</th>
+                  <th class="text-center" style="width:15%;">CAT No</th>
+                  <th class="text-center" style="width:20%;">Product Description</th>
+                  <th class="text-center" style="width:10%;">Base Price</th>
+                  <th class="text-center" style="width:10%;">Qty</th>
+                  <th class="text-center" style="width:15%;">Total Price</th>
+                  <th class="text-center" style="width:11%;">Tax %</th>
+                  <th class="text-center" style="width:15%;">Total Amount Incl.Tax</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="sl_no" t-value="1"/>
+                <t t-foreach="o.order_line" t-as="line">
+                  <tr>
+                    <td class="text-center"><t t-esc="sl_no"/></td>
+                    <td><span t-field="line.product_id.default_code"/></td>
+                    <td><span t-field="line.name"/></td>
+                    <td><span t-field="line.price_unit"/></td>
+                    <td><span t-field="line.product_qty"/></td>
+                    
+                    <td><t t-esc="line.price_subtotal"/></td>
+                    <td><span t-field="line.taxes_id"/></td>
+                    <td><t t-esc="line.price_total"/></td>
+                  </tr>
+                  <t t-set="sl_no" t-value="sl_no + 1"/>
+                </t>
+              
+				  <tr>
+				    <td colspan="7" style="text-align:right;"><strong>Total Amount</strong></td>
+				    <td colspan="1"><span t-field="o.amount_untaxed"/></td>
+				  </tr>
+				  <tr>
+				    <td colspan="7" style="text-align:right;"><strong>Total GST Amount</strong></td>
+				    <td colspan="1"><span t-field="o.amount_tax"/></td>
+				  </tr>
+				  <tr>
+				    <td colspan="7" style="text-align:right;"><strong>Total Amount Including Tax</strong></td>
+				    <td colspan="1"><span t-field="o.amount_total"/></td>
+				  </tr>
+              </tbody>
+            </table>
+
+            <!-- <br/> -->
+            <br/>
+			<table class="table table-bordered" style="width: 70%; margin: 0 auto;margin-top:-30px;">
+			  <t t-if="o.end_cust_name">
+				  <tr>
+				    <td><strong>End Customer</strong></td>
+				    <td><span t-field="o.end_cust_name"/></td>
+				  </tr>
+			  </t>
+			  <t t-if="o.cust_po_number">
+				  <tr>
+				    <td><strong>Purchase Order No</strong></td>
+				    <td><span t-esc="o.cust_po_number"/></td>
+				  </tr>
+			  </t>
+			  <t t-if="o.cust_tendor_no">
+				  <tr>
+				    <td><strong>Tender No. &amp; Name</strong></td>
+				    <td><span t-field="o.cust_tendor_no"/></td>
+				  </tr>
+			  </t>
+			  <t t-if="o.cust_po_date">
+				  <tr>
+				    <td><strong>Purchase Order Date</strong></td>
+				    <td><span t-field="o.cust_po_date"/></td>
+				  </tr>
+			  </t>
+			  <t t-if="o.cust_quote_id">
+				  <tr>
+				    <td><strong>Quote ID</strong></td>
+				    <td><span t-field="o.cust_quote_id"/></td>
+				  </tr>
+			  </t>
+			</table>
+			
+			<!-- <br/> -->
+			
+			<p><strong><u>Terms &amp; Conditions:</u></strong></p>
+			<div name="footer_section" style="margin-top:3px;">
+				<span t-field="o.notes"/>
+ 			</div>
+			
+          </div>
+             <div style="page-break-before: always;"></div>
+          
+          <div class="col-12 " >
+			  <div class="row" >
+			    <div class="col-6 text-start ">
+			      <p>Thanking you</p>
+			      <img t-if="o.company_id.signature" class="o_company_logo_small" 
+			           t-att-src="image_data_uri(o.company_id.signature)" 
+			           alt="Signature" 
+			           style="max-height: 100px; max-width: 100px;"/>
+			      <p>Very truly yours,<br/>
+			      For LAKSHMI SURGICALS</p>
+			    </div>
+			    <div class="col-6 text-start">  
+			      <img t-if="o.company_id.company_seal" class="o_company_logo_small" 
+			           t-att-src="image_data_uri(o.company_id.company_seal)" 
+			           alt="Seal" 
+			           style="max-height: 100px; max-width: 100px;"/>
+			    </div>
+			  </div>
+			</div>
+
+        </t>
+      </t>
+    </t>
+  </template>
+  
+  <template id="report_purchase_custom_po_kerala">
+    <t t-call="zb_lakshmi_customizations.external_layout_custom_po_kerala">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+          <div class="page">
+            <div class="row">
+              <div class="col-6" style="text-align:left;">
+                <strong><span t-esc="o.name.split('/')[1] if '/' in o.name else o.name"/></strong><br/>
+                <span t-field="o.date_order"/>
+              </div>
+            </div>
+            <!-- <br/> -->
+            <p style="margin-top:10px;">
+<!--              <strong>To:</strong><br/>-->
+              <span t-field="o.partner_id.name"/><br/>
+              <span t-field="o.partner_id.street"/><br/>
+              <span t-field="o.partner_id.city"/> - <span t-field="o.partner_id.zip"/><br/>
+              <span t-field="o.partner_id.country_id.name"/>
+            </p>
+            <h2 style="text-align:center; color:black; margin-top:-30px;" >Purchase Order</h2>
+            <span>Dear Sir,<br />Kindly supply the below instruments</span><br />
+            <!-- <p>Dear Sir,</p>
+            <p>Kindly supply the below instruments</p>
+ -->
+            <table class="table table-bordered" style="width:100%; border-collapse:collapse;">
+              <thead>
+                <tr style="background-color:#f2f2f2;">
+<!--                  <th style="width:5%; align: center;">Sl No</th>-->
+                  <th class="text-center" style="width:5%;">Sl No</th>
+                  <th class="text-center" style="width:15%;">CAT No</th>
+                  <th class="text-center" style="width:20%;">Product Description</th>
+                  <th class="text-center" style="width:10%;">Base Price</th>
+                  <th class="text-center" style="width:10%;">Qty</th>
+                  <th class="text-center" style="width:15%;">Total Price</th>
+                  <th class="text-center" style="width:10%;">Tax %</th>
+                  <th class="text-center" style="width:15%;">Total Amount Incl.Tax</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="sl_no" t-value="1"/>
+                <t t-foreach="o.order_line" t-as="line">
+                  <tr>
+                    <td class="text-center"><t t-esc="sl_no"/></td>
+                    <td><span t-field="line.product_id.default_code"/></td>
+                    <td><span t-field="line.name"/></td>
+                    <td><span t-field="line.price_unit"/></td>
+                    <td><span t-field="line.product_qty"/></td>
+                    
+                    <td><t t-esc="line.price_subtotal"/></td>
+                    <td><span t-field="line.taxes_id"/></td>
+                    <td><t t-esc="line.price_total"/></td>
+                  </tr>
+                  <t t-set="sl_no" t-value="sl_no + 1"/>
+                </t>
+              
+				  <tr>
+				    <td colspan="7" style="text-align:right;"><strong>Total Amount</strong></td>
+				    <td colspan="1"><span t-field="o.amount_untaxed"/></td>
+				  </tr>
+				  <tr>
+				    <td colspan="7" style="text-align:right;"><strong>Total GST Amount</strong></td>
+				    <td colspan="1"><span t-field="o.amount_tax"/></td>
+				  </tr>
+				  <tr>
+				    <td colspan="7" style="text-align:right;"><strong>Total Amount Including Tax</strong></td>
+				    <td colspan="1"><span t-field="o.amount_total"/></td>
+				  </tr>
+              </tbody>
+            </table>
+
+            <!-- <br/>
+            <br/> -->
+			<table class="table table-bordered" style="width: 70%; margin: 0 auto;margin-top:-30px;">
+			  <t t-if="o.end_cust_name">
+				  <tr>
+				    <td><strong>End Customer</strong></td>
+				    <td><span t-field="o.end_cust_name"/></td>
+				  </tr>
+			  </t>
+			  <t t-if="o.cust_po_number">
+				  <tr>
+				    <td><strong>Purchase Order No</strong></td>
+				    <td><span t-esc="o.cust_po_number"/></td>
+				  </tr>
+			  </t>
+			  <t t-if="o.cust_tendor_no">
+				  <tr>
+				    <td><strong>Tender No. &amp; Name</strong></td>
+				    <td><span t-field="o.cust_tendor_no"/></td>
+				  </tr>
+			  </t>
+			  <t t-if="o.cust_po_date">
+				  <tr>
+				    <td><strong>Purchase Order Date</strong></td>
+				    <td><span t-field="o.cust_po_date"/></td>
+				  </tr>
+			  </t>
+			  <t t-if="o.cust_quote_id">
+				  <tr>
+				    <td><strong>Quote ID</strong></td>
+				    <td><span t-field="o.cust_quote_id"/></td>
+				  </tr>
+			  </t>
+			</table>
+			
+			<br/>
+			
+			<p><strong><u>Terms &amp; Conditions:</u></strong></p>
+			<div name="footer_section" style="margin-top:5px;">
+				<span t-field="o.notes"/>
+ 			</div>
+			
+          </div>
+          <div style="page-break-before: always;"></div>
+          <div class="col-12">
+			  <div class="row">
+			    <div class="col-6 text-start">
+			      <p>Thanking you</p>
+			      <img t-if="o.company_id.signature" class="o_company_logo_small" 
+			           t-att-src="image_data_uri(o.company_id.signature)" 
+			           alt="Signature" 
+			           style="max-height: 100px; max-width: 100px;"/>
+			      <p>Very truly yours,<br/>
+			      For LAKSHMI SURGICALS</p>
+			    </div>
+			    <div class="col-6 text-start">  
+			      <img t-if="o.company_id.company_seal" class="o_company_logo_small" 
+			           t-att-src="image_data_uri(o.company_id.company_seal)" 
+			           alt="Seal" 
+			           style="max-height: 100px; max-width: 100px;"/>
+			    </div>
+			  </div>
+			</div>
+
+        </t>
+      </t>
+    </t>
+  </template>
+</odoo>

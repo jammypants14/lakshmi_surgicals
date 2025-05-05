@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="ageing_report_pdf">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.basic_layout">
+					<div class="header" style="margin-bottom: 0; padding-bottom: 0; ">
+						<div style="text-align: center;">
+					    	<h4>Ageing Report</h4>
+					    </div>
+					</div>
+					 <div class="row" style="margin-top: 0; padding-top: 0;">
+						    <div style="text-align: left; max-width: 50%;" class="col-xs-6">
+						        <t>
+						            <div>
+						                <table style="float:left; border: none; border-collapse: collapse; border-style:hidden;">
+						                    <tr>
+						                        <td style="width: 160px; border-style:hidden;">
+						                            <strong>Date As On</strong>
+						                        </td>
+						                        <td style="width: 20px; border-style:hidden;text-align: left;">:</td>
+						                        <td>
+														<span t-field="o.date_as_on" style="white-space: normal; word-break: break-word;" />
+						                        </td>
+						                    </tr>
+						                </table>
+						            </div>
+						        </t>
+						    </div>
+						</div>
+						
+						 <div class="row">
+						    <div style="text-align: left; max-width: 50%;" class="col-xs-6">
+						        <t>
+						            <div>
+						                <table style="float:left; border: none; border-collapse: collapse; border-style:hidden;">
+						                    <tr>
+						                        <td style="width: 160px; border-style:hidden;">
+						                            <strong>Partner Type</strong>
+						                        </td>
+						                        <td style="width: 20px; border-style:hidden;text-align: left;">:</td>
+						                        <td>
+														<span t-field="o.partner_type" style="white-space: normal; word-break: break-word;" />
+						                        </td>
+						                    </tr>
+						                </table>
+						            </div>
+						        </t>
+						    </div>
+						</div>
+						
+						 <div class="row">
+						    <div style="text-align: left; max-width: 50%;" class="col-xs-6">
+						        <t>
+						            <div>
+						                <table style="float:left; border: none; border-collapse: collapse; border-style:hidden;">
+						                    <tr>
+						                        <td style="width: 160px; border-style:hidden;">
+						                            <strong>Based On</strong>
+						                        </td>
+						                        <td style="width: 20px; border-style:hidden;text-align: left;">:</td>
+						                        <td>
+														<span t-field="o.based_on" style="white-space: normal; word-break: break-word;" />
+						                        </td>
+						                    </tr>
+						                </table>
+						            </div>
+						        </t>
+						    </div>
+						</div>
+						
+						<div class="row">
+						    <div style="text-align: left; max-width: 100%;" class="col-xs-6">
+						        <t>
+						            <div>
+						                <table style="float:left; border: none; border-collapse: collapse; border-style:hidden;">
+						                    <tr>
+						                        <td style="width: 160px; border-style:hidden;">
+						                            <strong>Company</strong>
+						                        </td>
+						                        <td style="width: 20px; border-style:hidden;text-align: left;">:</td>
+						                        <td>
+														<span t-field="o.company_id.name" style="white-space: normal; word-break: break-word;" />
+						                        </td>
+						                    </tr>
+						                </table>
+						            </div>
+						        </t>
+						    </div>
+						</div>
+						
+						<div class="row">
+						    <div style="text-align: left; max-width: 100%;" class="col-xs-6">
+						        <t>
+						            <div>
+						                <table style="float:left; border: none; border-collapse: collapse; border-style:hidden;">
+						                    <tr>
+						                        <td style="width: 160px; border-style:hidden;">
+						                            <strong>Account(s)</strong>
+						                        </td>
+						                        <td style="width: 20px; border-style:hidden;text-align: left;">:</td>
+						                        <td>
+													 <t t-foreach="o.account_ids" t-as="account">
+											        	<span t-field="account.name" style="white-space: normal; word-break: break-word;"/>,<t t-raw="'\u00A0'"/>
+  												     </t>
+						                        </td>
+						                    </tr>
+						                </table>
+						            </div>
+						        </t>
+						    </div>
+						</div>
+						
+						<div class="row">
+						    <div style="text-align: left; max-width: 50%;" class="col-xs-6">
+						        <t>
+						            <div>
+						                <table style="float:left; border: none; border-collapse: collapse; border-style:hidden;">
+						                    <tr>
+						                        <td style="width: 160px; border-style:hidden;">
+						                            <strong>Age Type</strong>
+						                        </td>
+						                        <td style="width: 20px; border-style:hidden;text-align: left;">:</td>
+						                        <td>
+														<span t-field="o.age_type" style="white-space: normal; word-break: break-word;" />
+						                        </td>
+						                    </tr>
+						                </table>
+						            </div>
+						        </t>
+						    </div>
+						</div>
+						   
+						<div class="page">
+							<table class="table table-sm o_main_table mt-4">
+										<thead>
+											<tr>
+												<th class="text-center"><strong>SL #</strong></th>
+												<th class="text-center"><strong>Reference</strong></th>
+												<th class="text-center"><strong>Partner</strong></th>
+												<th class="text-center"><strong>0-30D</strong></th>
+												<th class="text-center"><strong>31-60D</strong></th>
+												<th class="text-center"><strong>61-90D</strong></th>
+												<th class="text-center"><strong>91-180D</strong></th>
+												<th class="text-center"><strong>181-365D</strong></th>
+												<th class="text-center"><strong>366+ D</strong></th>
+												<th class="text-center"><strong>Total</strong></th>
+											</tr>
+										</thead>
+										<t t-set="first_total" t-value="0.0" />
+										<t t-set="second_total" t-value="0.0" />
+										<t t-set="third_total" t-value="0.0" />
+										<t t-set="forth_total" t-value="0.0" />
+										<t t-set="fifth_total" t-value="0.0" />
+										<t t-set="sixth_total" t-value="0.0" />
+										<t t-set="seventh_total" t-value="0.0" />
+										<tbody>
+										<t t-foreach="sorted(o.partner_ids, key=lambda l: l.total, reverse=True)" t-as="line">
+										<!-- <t t-foreach="o.partner_ids" t-as="line"> -->
+											<t t-set="counter" t-value="line_index + 1"/>
+											<t t-set="first_total" t-value="first_total + line.days_0_30" />
+											<t t-set="second_total" t-value="second_total + line.days_31_60" />
+											<t t-set="third_total" t-value="third_total + line.days_61_90" />
+											<t t-set="forth_total" t-value="forth_total + line.days_91_180" />
+											<t t-set="fifth_total" t-value="fifth_total + line.days_181_365" />
+											<t t-set="sixth_total" t-value="sixth_total + line.days_366_plus" />
+											<t t-set="seventh_total" t-value="seventh_total + line.total" />
+												<tr>
+													<t>
+														<td class="text-right" style="text-align: right;">
+															<span t-raw="counter"/>
+														</td>
+														<td class="text-right" style="text-align: left;">
+															<span t-raw="line.partner_id.ref"/>
+														</td>
+														<td class="text-right" style="text-align: left;">
+															<span t-raw="line.partner_id.name"/>
+														</td>
+														<td class="text-left" style="text-align: right;">
+															<span t-field="line.days_0_30" t-options='{"widget": "monetary", "display_currency": user.company_id.currency_id, "precision": 2}' />
+														</td>
+														<td class="text-right" style="text-align: right;">
+															<span t-raw="line.days_31_60" t-options='{"widget": "monetary", "display_currency": user.company_id.currency_id, "precision": 2}' />
+														</td>
+														<td class="text-right" style="text-align: right;">
+															<span t-raw="line.days_61_90" t-options='{"widget": "monetary", "display_currency": user.company_id.currency_id, "precision": 2}' />
+														</td>
+														<td class="text-right" style="text-align: right;">
+															<span t-field="line.days_91_180" t-options='{"widget": "monetary", "display_currency": user.company_id.currency_id, "precision": 2}' />
+														</td>
+														<td class="text-right" style="text-align: right;">
+															<span t-field="line.days_181_365" t-options='{"widget": "monetary", "display_currency": user.company_id.currency_id, "precision": 2}' />
+														</td>
+														<td class="text-right" style="text-align: right;">
+															<span t-field="line.days_366_plus" t-options='{"widget": "monetary", "display_currency": user.company_id.currency_id, "precision": 2}' />
+														</td>
+														<td class="text-right" style="text-align: right;">
+															<span t-field="line.total" t-options='{"widget": "monetary", "display_currency": user.company_id.currency_id, "precision": 2}' />
+														</td>
+													</t>
+												</tr>
+										</t>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+										 	<td class="text-right" style="text-align: right;"> <span t-esc="'{:.2f}'.format(first_total)" /></td>
+										 	<td class="text-right" style="text-align: right;"> <span t-esc="'{:.2f}'.format(second_total)" /></td>
+										 	<td class="text-right" style="text-align: right;"> <span t-esc="'{:.2f}'.format(third_total)" /></td>
+										 	<td class="text-right" style="text-align: right;"> <span t-esc="'{:.2f}'.format(forth_total)" /></td>
+										 	<td class="text-right" style="text-align: right;"> <span t-esc="'{:.2f}'.format(fifth_total)" /></td>
+										 	<td class="text-right" style="text-align: right;"> <span t-esc="'{:.2f}'.format(sixth_total)" /></td>
+										 	<td class="text-right" style="text-align: right;"> <span t-esc="'{:.2f}'.format(seventh_total)" /></td>
+										</tr>
+										</tbody>
+										
+									</table>	
+							</div>
+				</t>
+			</t>
+		</t>
+	</template>
+</odoo>

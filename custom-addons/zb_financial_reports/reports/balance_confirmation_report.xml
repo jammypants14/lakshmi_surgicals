@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="balance_confirmaton_report">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.basic_layout">
+					<div class="header">
+					    <div class="row" >
+					       
+					        <div style="text-align: center;">
+					            <h4>Balance Confirmation</h4>
+					        </div>
+					    </div>
+					</div>
+					<div class="page" style="color:white;">
+					Sample Report
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+</odoo>

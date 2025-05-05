@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="gst_invoice_external_layout">
+        	<t t-if="not o" t-set="o" t-value="doc"/>
+
+	      <!--<t t-if="not company">
+	             Multicompany 
+	            <t t-if="company_id">
+	                <t t-set="company" t-value="company_id"/>
+	            </t>
+	            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+	                <t t-set="company" t-value="o.company_id.sudo()"/>
+	            </t>
+	            <t t-else="else">
+	                <t t-set="company" t-value="res_company"/>
+	            </t>
+	        </t>
+        	<div t-attf-class="header o_company_#{o.id}_layout" t-att-style="report_header_style">
+	           	<div class="row mb8">
+	               	<div class="col-6">
+	                    <div class="col-2 text-right" style="margin-top: 15px !important;">
+	        				<img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height:120px;max-width:120px;"/>
+	        			</div>
+	                 	<span style="margin-left:330px;font-size: 35px;">
+					        <t t-if="o.move_type == 'out_refund'">
+					            <b>Credit Note</b>
+					        </t>
+					        <t t-elif="o.move_type == 'in_refund'">
+					            <b>Debit Note</b>
+					        </t>
+					        <t t-else="">
+					            <b>Tax Invoice</b>
+					        </t>
+					    </span>
+					    <br/>
+						<t t-if="o.company_id.vat">
+			                <span style="margin-left:210px;font-size: 18px;">GSTIN:
+			                    <t t-esc="o.company_id.vat"/>
+			                 </span>
+	          				</t>
+					    
+				    </div>
+	            </div>
+	       	</div>-->
+            <div class="article o_report_layout_standard" style="font-size:13px;">
+                <t t-raw="0" />
+            </div>
+            <div class="footer">
+            </div>
+        </template>
+    </data>
+</odoo>

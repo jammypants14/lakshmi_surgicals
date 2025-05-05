@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<!--<record id="general_ledger_xlsx_report" model="ir.actions.report">
+		<field name="name">General Ledger</field>
+		<field name="model">general.ledger.wiz</field>
+		<field name="report_type">xlsx</field>
+		<field name="report_name">zb_financial_reports.general_ledger_xlsx</field>
+		<field name="report_file">zb_financial_reports.general_ledger_xlsx</field>
+	</record>-->
+	<!--<record id="day_book_xlsx_report" model="ir.actions.report">
+		<field name="name">Day Book (Cash)</field>
+		<field name="model">day.book.wiz</field>
+		<field name="report_type">xlsx</field>
+		<field name="report_name">zb_financial_reports.day_book_xlsx</field>
+		<field name="report_file">zb_financial_reports.day_book_xlsx</field>
+	</record>-->
+	
+	<!--<record id="partner_ledger_xlsx_report" model="ir.actions.report">
+		<field name="name">Partner Ledger</field>
+		<field name="model">partner.ledger.wiz</field>
+		<field name="report_type">xlsx</field>
+		<field name="report_name">zb_financial_reports.partner_ledger_xlsx</field>
+		<field name="report_file">zb_financial_reports.partner_ledger_xlsx</field>
+	</record>-->
+	
+	<!--<record id="trial_balance_xlsx_report" model="ir.actions.report">
+		<field name="name">Trial Balance</field>
+		<field name="model">trial.balance.wiz</field>
+		<field name="report_type">xlsx</field>
+		<field name="report_name">zb_financial_reports.trial_balance_xlsx</field>
+		<field name="report_file">zb_financial_reports.trial_balance_xlsx</field>
+	</record>
+	-->
+	<!--<record id="partner_summary_xlsx_report" model="ir.actions.report">
+		<field name="name">Partner Summary</field>
+		<field name="model">partner.summary.wiz</field>
+		<field name="report_type">xlsx</field>
+		<field name="report_name">zb_financial_reports.partner_summary_xlsx</field>
+		<field name="report_file">zb_financial_reports.partner_summary_xlsx</field>
+	</record>-->
+	
+	<record id="pdf_report_paper_format" model="report.paperformat">
+			<field name="name">PDF REport Paper Format</field>
+			<field name="default" eval="True" />
+			<field name="format">custom</field>
+			<field name="margin_top">28</field>
+			<field name="margin_bottom">40</field>
+			<field name="margin_left">10</field>
+			<field name="margin_right">5</field>
+			<field name="header_spacing">20</field>
+			<field name="header_line" eval="False" />
+			<field name="orientation">Portrait</field>
+		</record>
+	
+	<record id="landscape_pdf_report_paper_format" model="report.paperformat">
+			<field name="name">Landscape PDF Report Paper Format</field>
+			<field name="default" eval="True" />
+			<field name="format">custom</field>
+			<field name="margin_top">28</field>
+			<field name="margin_bottom">40</field>
+			<field name="margin_left">10</field>
+			<field name="margin_right">5</field>
+			<field name="header_spacing">20</field>
+			<field name="header_line" eval="False" />
+			<field name="orientation">Landscape</field>
+		</record>
+	
+	<record id="action_balance_confirmation_saudi" model="ir.actions.report">
+			<field name="name">Balance Confirmation Report</field>
+			<field name="model">balance.confirmation.wiz</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">zb_financial_reports.balance_confirmaton_report</field>
+			<field name="report_file">zb_financial_reports.balance_confirmaton_report</field>
+			<field name="binding_model_id" eval="False" />
+			<field name="binding_type">report</field>
+			<field name='print_report_name'>"Balance Confirmation"</field>
+		</record>
+		
+	<record id="action_partner_summary" model="ir.actions.report">
+			<field name="name">Partner Summary Report</field>
+			<field name="model">partner.summary.wiz</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">zb_financial_reports.partner_summary_report</field>
+			<field name="report_file">zb_financial_reports.partner_summary_report</field>
+			<field name="binding_model_id" eval="False" />
+			<field name="binding_type">report</field>
+			<field name='print_report_name'>"Partner Summary"</field>
+			<field name="paperformat_id" ref="pdf_report_paper_format"/>
+		</record>
+		
+	<record id="action_partner_ageing_report" model="ir.actions.report">
+			<field name="name">Ageing Report</field>
+			<field name="model">ageing.report.wizard</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">zb_financial_reports.ageing_report_pdf</field>
+			<field name="report_file">zb_financial_reports.ageing_report_pdf</field>
+			<field name="binding_model_id" eval="False" />
+			<field name="binding_type">report</field>
+			<field name='print_report_name'>"Ageing Report"</field>
+			<field name="paperformat_id" ref="landscape_pdf_report_paper_format"/>
+		</record>
+
+</odoo>

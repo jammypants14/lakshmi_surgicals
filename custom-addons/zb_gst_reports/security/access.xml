@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_edit_invoice_type" model="res.groups">
+            <field name="name">Edit Invoice Type</field>
+        </record>
+
+        <record model="ir.rule" id="gst_reports_record_rule">
+            <field name="name">GST Reports Record Rule</field>
+            <field name="model_id" ref="model_gst_reports"/>
+             <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+    </data>
+</odoo>

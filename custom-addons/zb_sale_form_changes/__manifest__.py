@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale form changes',
-    'version': '18.0.0.0',
+    'version': '18.0.0.1',
     'summary': 'This module contains customizations for Sale form.',
     'description': """This module contains customizations for the Sale form """,
     'category': 'Service',

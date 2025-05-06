@@ -8,5 +8,6 @@ class ResCompany(models.Model):
     company_seal = fields.Binary(string="Company Seal")
     signature = fields.Binary(string="Signature")
 
+    
 
     

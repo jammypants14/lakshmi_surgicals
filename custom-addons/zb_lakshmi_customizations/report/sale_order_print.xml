@@ -211,4 +211,15 @@
     </t>
   </template>
   
+  <template
+			id="report_pro_forma_invoic_inherit_zb_lakshmi_surgicals"
+			inherit_id="sale.report_saleorder_document">
+			
+			
+			<xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+				<attribute name="t-call">zb_lakshmi_customizations.external_layout_custom_po_kerala</attribute>
+			</xpath>
+			
+	</template>
+  
 </odoo>

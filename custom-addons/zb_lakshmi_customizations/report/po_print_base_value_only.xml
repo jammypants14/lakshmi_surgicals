@@ -58,7 +58,9 @@
 				  </tr>
               </tbody>
             </table>
-
+            
+            <br />
+            
 			<table class="table table-bordered" style="width: 70%; margin: 0 auto;">
 			  <t t-if="o.end_cust_name">
 				  <tr>
@@ -179,6 +181,8 @@
 				  </tr>
               </tbody>
             </table>
+            
+            <br />
 
 			<table class="table table-bordered" style="width: 70%; margin: 0 auto;">
 			  <t t-if="o.end_cust_name">

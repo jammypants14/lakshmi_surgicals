@@ -73,10 +73,10 @@
             <br/>
             
 			<table class="table table-bordered" style="width: 70%; margin: 0 auto;margin-top:-30px;">
-			  <t t-if="o.end_cust_name">
+			  <t t-if="o.cust_name">
 				  <tr>
 				    <td><strong>End Customer</strong></td>
-				    <td><span t-field="o.end_cust_name"/></td>
+				    <td><span t-field="o.cust_name"/></td>
 				  </tr>
 			  </t>
 			  <t t-if="o.cust_po_number">
@@ -213,10 +213,10 @@
             <br/>
             <br/>
 			<table class="table table-bordered" style="width: 70%; margin: 0 auto;margin-top:-30px;">
-			  <t t-if="o.end_cust_name">
+			  <t t-if="o.cust_name">
 				  <tr>
 				    <td><strong>End Customer</strong></td>
-				    <td><span t-field="o.end_cust_name"/></td>
+				    <td><span t-field="o.cust_name"/></td>
 				  </tr>
 			  </t>
 			  <t t-if="o.cust_po_number">

@@ -72,10 +72,10 @@
 				    <td><span t-field="o.cust_name"/></td>
 				  </tr>
 			  </t>
-			  <t t-if="o.end_cust_po_number">
+			  <t t-if="o.cust_po_number">
 				  <tr>
 				    <td><strong>End Customer PO No</strong></td>
-				    <td><span t-esc="o.end_cust_po_number"/></td>
+				    <td><span t-esc="o.cust_po_number"/></td>
 				  </tr>
 			  </t>
 			  <t t-if="o.cust_po_date">
@@ -200,10 +200,10 @@
 				    <td><span t-field="o.cust_name"/></td>
 				  </tr>
 			  </t>
-			  <t t-if="o.end_cust_po_number">
+			  <t t-if="o.cust_po_number">
 				  <tr>
 				    <td><strong>End Customer PO No</strong></td>
-				    <td><span t-esc="o.end_cust_po_number"/></td>
+				    <td><span t-esc="o.cust_po_number"/></td>
 				  </tr>
 			  </t>
 			  <t t-if="o.cust_po_date">

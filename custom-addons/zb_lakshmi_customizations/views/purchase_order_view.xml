@@ -9,9 +9,9 @@
             	<page name="specs">
             		<group>
             			<field name="cust_name"/>
-            			<field name="end_cust_name"/>
+            			<field name="end_cust_name" invisible="1" />
             			<field name="cust_po_number"/>
-            			<field name="end_cust_po_number"/>
+            			<field name="end_cust_po_number" invisible="1" />
             			<field name="cust_po_date"/>
             			<field name="cust_quote_id"/>
             			<field name="cust_service_id"/>

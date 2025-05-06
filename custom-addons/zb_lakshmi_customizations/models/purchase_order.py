@@ -6,7 +6,7 @@ class PurchaseOrder(models.Model):
    
     cust_name = fields.Char(string="Customer Name")
     end_cust_name = fields.Char(string="End Customer Name")
-    end_cust_po_number = fields.Char(string="End Customer PO Number")
+    end_cust_po_number = fields.Char(string="Customer PO Number")
     cust_po_number = fields.Char(string="PO Number")
     cust_po_date = fields.Char(string="PO Date")
     cust_quote_id = fields.Char(string="Quote ID")

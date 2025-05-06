@@ -50,4 +50,15 @@
 			</xpath>
 			
 	</template>
+	
+	<template id="report_pro_forma_invoic_total_inherit_zb_lakshmi_surgicals" inherit_id="account.document_tax_totals_template">
+			<xpath expr="//tr[@class='o_total']" position="replace">
+				<tr class="o_total">
+                <td><strong>Total</strong></td>
+                <td  class="text-end">
+                    <strong><span t-out="tax_totals.get('formatted_amount_total')">31.05</span></strong>
+                </td>
+            </tr>
+			</xpath>
+  </template>
 </odoo>

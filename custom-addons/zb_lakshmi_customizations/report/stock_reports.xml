@@ -19,6 +19,13 @@
 			<xpath expr="//t[@t-set='has_serial_number'][2]" position="replace">
 			    <t t-set="has_serial_number" t-value="o.move_line_ids.mapped('lot_id')" />
 			</xpath>	
+			
+			<xpath expr="//div[@name='customer_address']" position="after">
+			    <div name="internal_to_address" t-if="o.picking_type_id.code=='internal' and partner">
+                    <strong>To Address</strong>
+                    <t t-set="show_partner" t-value="True" />
+                </div>
+			</xpath>	
 	</template>
 	
 	<template id="report_delivery_slip_inherit_lot_expiry_zb_lakshmi_surgicals" inherit_id="stock.stock_report_delivery_has_serial_move_line">

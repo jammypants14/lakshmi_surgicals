@@ -22,7 +22,7 @@
 {
     "name": "Lakshmi Surgicals Customizations ",
     "summary": "Lakshmi Surgicals Customizations",
-    "version": "18.0.0.11",
+    "version": "18.0.0.12",
     "category": "Accounting",
     "website": "http://www.zbeanztech.com/",
     "description": """
@@ -45,6 +45,7 @@
         'report/sale_order_print.xml',
         'report/stock_reports.xml',
         'views/account_move_view.xml',
+        'views/sale_order_view.xml',
         'views/res_users_view.xml',
         'views/purchase_order_view.xml',
         'views/stock_picking.xml',

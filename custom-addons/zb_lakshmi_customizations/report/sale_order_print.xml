@@ -215,6 +215,18 @@
 			<xpath expr="//t[@t-call='web.external_layout']" position="attributes">
 				<attribute name="t-call">zb_lakshmi_customizations.external_layout_custom_po_kerala</attribute>
 			</xpath>
+			<xpath expr="//th[@name='th_quantity']" position="after">
+				 <t t-if="doc.show_mrp">
+				 	<th name="th_mrp" class="text-end text-nowrap">MRP</th>
+				 </t>
+			</xpath>
+			<xpath expr="//td[@name='td_quantity']" position="after">
+				 <t t-if="doc.show_mrp">
+					 <td name="td_mrp" class="text-end">
+					    <span t-field="line.product_id.list_price" />
+					</td>
+				</t>
+			</xpath>
   </template>
 
   

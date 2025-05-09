@@ -15,6 +15,17 @@
             </xpath>
         </field>
     </record>
+    
+    <record id="view_sale_search_inherit_zb_lakshmi_cust" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.zb.lakshmi.cust</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="tag_ids" />
+            </xpath>
+        </field>
+    </record>
 </data>
 
 </odoo>

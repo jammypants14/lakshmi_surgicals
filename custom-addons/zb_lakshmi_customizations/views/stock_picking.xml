@@ -11,6 +11,16 @@
             </xpath>
         </field>
     </record>
+    <record id="view_stock_picking_tree_inherit_zb_lakshmi_cust" model="ir.ui.view">
+        <field name="name">stock.piking.tree.inherit.zb.lakshmi.cust</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="vendor_reference" />
+            </xpath>
+        </field>
+    </record>
 </data>
 
 </odoo>

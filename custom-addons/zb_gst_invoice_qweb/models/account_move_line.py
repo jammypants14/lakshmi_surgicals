@@ -23,12 +23,6 @@ class AccountMoveLine(models.Model):
     igst_amount = fields.Float("IGST Amount", compute="calculate_gst_amount")
     label = fields.Char(string="Label")
     label_text = fields.Text(string="Label")
-    salesman_id = fields.Many2one(
-        'res.users',
-        string="Salesman",
-        store=False
-    )
-
 
     @api.onchange('name')
     def _onchange_name_set_editable_label(self):

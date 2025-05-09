@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class PurchaseOrder(models.Model):
@@ -12,5 +12,13 @@ class PurchaseOrder(models.Model):
     cust_quote_id = fields.Char(string="Quote ID")
     cust_service_id = fields.Char(string="Service ID")
     cust_tendor_no = fields.Char(string="Tendor No & Name")
-
     
+    @api.onchange('order_line')
+    def _onchange_order_line_sl_no(self):
+        for idx, line in enumerate(self.order_line, 1):
+            line.sl_no = idx
+
+class PurchaseOrderLine(models.Model):
+    _inherit = "purchase.order.line"
+    
+    sl_no = fields.Integer("Sl No.")

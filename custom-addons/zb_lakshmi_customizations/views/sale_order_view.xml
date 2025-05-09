@@ -9,6 +9,10 @@
             <xpath expr="//group[@name='sales_person']" position="inside">
                 <field name="show_mrp" />
             </xpath>
+            
+            <xpath expr="//field[@name='order_line']/list/field[@name='sequence']" position="after">
+            	<field name="sl_no"/>
+            </xpath>
         </field>
     </record>
 </data>

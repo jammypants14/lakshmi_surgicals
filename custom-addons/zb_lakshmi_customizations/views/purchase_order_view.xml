@@ -20,6 +20,9 @@
             	</page>
             	 
             </xpath>
+            <xpath expr="//field[@name='sequence']" position="after">
+            	<field name="sl_no"/>
+            </xpath>
         </field>
     </record>
 </odoo>

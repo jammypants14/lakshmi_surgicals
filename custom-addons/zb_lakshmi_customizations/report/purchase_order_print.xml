@@ -3,7 +3,12 @@
     <t t-call="zb_lakshmi_customizations.external_layout_custom_po_delhi">
       <t t-call="web.html_container">
         <t t-foreach="docs" t-as="o">
-   
+        <style type="text/css">
+            * {
+              font-family: Cambria, serif !important;
+              font-size: 10px;
+            }
+          </style>
           <div class="page" >
             <div class="row" >
               <div class="col-6" style="text-align:left;">
@@ -114,8 +119,12 @@
 			
           </div>
             <!-- <div style="page-break-before: always;"></div>-->
+            
+          <div style="margin-top: 320px; text-align: center; font-size: 12px;">
+			  THIS IS AN ELECTRONICALLY GENERATED PURCHASE ORDER HENCE NO SEAL &amp; SIGNATURE IS REQUIRED.
+		  </div>
           
-          <div class="col-12 " >
+          <!--<div class="col-12 " >
 			  <div class="row" >
 			    <div class="col-6 text-start ">
 			      <p>Thanking you</p>
@@ -133,7 +142,7 @@
 			           style="max-height: 100px; max-width: 100px;"/>
 			    </div>
 			  </div>
-			</div>
+			</div>-->
 
         </t>
       </t>
@@ -144,6 +153,12 @@
     <t t-call="zb_lakshmi_customizations.external_layout_custom_po_kerala">
       <t t-call="web.html_container">
         <t t-foreach="docs" t-as="o">
+        <style type="text/css">
+            * {
+              font-family: Cambria, serif !important;
+              font-size: 10px;
+            }
+          </style>
           <div class="page">
             <div class="row">
               <div class="col-6" style="text-align:left;">
@@ -245,7 +260,7 @@
 			  </t>
 			</table>
 			
-			<br/>
+			<!--<br/>-->
 			
 			<p><strong><u>Terms &amp; Conditions:</u></strong></p>
 			<div name="footer_section" style="margin-top:5px;">
@@ -253,8 +268,14 @@
  			</div>
 			
           </div>
+          
+           
+           <div style="margin-top: 320px; text-align: center; font-size: 12px; font-style: italic;">
+			  THIS IS AN ELECTRONICALLY GENERATED PURCHASE ORDER HENCE NO SEAL &amp; SIGNATURE IS REQUIRED.
+		  </div>
+          
           <!--<div style="page-break-before: always;"></div>-->
-          <div class="col-12">
+          <!--<div class="col-12">
 			  <div class="row">
 			    <div class="col-6 text-start">
 			      <p>Thanking you</p>
@@ -272,7 +293,7 @@
 			           style="max-height: 100px; max-width: 100px;"/>
 			    </div>
 			  </div>
-			</div>
+			</div>-->
 
         </t>
       </t>

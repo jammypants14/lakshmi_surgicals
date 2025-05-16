@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="seq_hr_expense_sheet" model="ir.sequence">
+            <field name="name">Bank Import Sequence</field>
+            <field name="code">hr.expense.sheet</field>
+            <field name="prefix">EXP/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="suffix"></field>
+        </record>
+    </data>
+</odoo>

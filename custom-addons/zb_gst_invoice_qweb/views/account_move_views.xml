@@ -27,6 +27,9 @@
                            placeholder="Delivery Address" nolabel="1" />
                            <!-- invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')" -->
                 </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='tax_ids']" position="after">
+                    <field name="lot_ids" widget="many2many_tags" optional="hide" />
+                </xpath>
             </field>
         </record>
         

@@ -1,0 +1,39 @@
+<odoo>
+	<data>
+		<record id="expense_claim_paperformat" model="report.paperformat">
+			<field name="name">Expense claim</field>
+			<field name="default" eval="True" />
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Landscape</field>
+			<field name="margin_top">15</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">6</field>
+			<field name="margin_right">6</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">10</field>
+			<field name="dpi">90</field>
+		</record>
+		 <record id="sm_expense_claim_report" model="ir.actions.report">
+	         <field name="name">Local Expense Claim Report</field>
+	         <field name="model">hr.expense.sheet</field>
+	         <field name="report_type">qweb-pdf</field>
+	         <field name="report_name">sm_expense_ext.expense_claim_template</field>
+	         <field name="report_file">sm_expense_ext.expense_claim_template</field>
+	         <field name="binding_model_id" eval="False"/>
+	         <field name="paperformat_id" ref="sm_expense_ext.expense_claim_paperformat"/>
+	         <field name="binding_type">report</field>
+     	</record>
+     	<record id="sm_training_expense_claim_report" model="ir.actions.report">
+	         <field name="name">Training Expense Claim Report</field>
+	         <field name="model">hr.expense.sheet</field>
+	         <field name="report_type">qweb-pdf</field>
+	         <field name="report_name">sm_expense_ext.training_expense_claim_template</field>
+	         <field name="report_file">sm_expense_ext.training_expense_claim_template</field>
+	         <field name="binding_model_id" ref="hr_expense.model_hr_expense_sheet"/>
+	         <field name="paperformat_id" ref="sm_expense_ext.expense_claim_paperformat"/>
+	         <field name="binding_type">report</field>
+     	</record>
+	</data>
+</odoo>

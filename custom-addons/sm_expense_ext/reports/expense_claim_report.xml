@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="expense_claim_template">
+            <t t-call="web.html_container">
+			  <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                	<div class="page" style="font-size: 12px;">
+						<style> tr:nth-child(odd) { background-color: #f2f2f2; } </style>
+					  <div>
+						<span>Printed On :</span>
+						<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M:%S')"/>
+					  </div>
+					  <div>
+						<span>Printed By :</span>
+						<span t-esc="user.name"></span>
+					 </div>
+					 <br/>
+                      <div>
+                        <table name="table_main" class="table table-bordered table-condensed table-bordered table-striped" 
+                               width="100%" style="font-size: 12px;">
+	                        <tr>
+	                            <th colspan="9">
+									<h3>
+										<center>
+											<strong>
+												LOCAL EXPENSE CLAIM&#160;&#160;
+												<span t-esc="o.sequence_no"/>
+											</strong><br/>
+											<span t-esc="o.name"/>
+										</center>
+									</h3>
+								</th>
+	                            <th rowspan="2" colspan="2">
+	                                 <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" 
+	                                      style="width: 96.8mm;height: 22.629mm;"/>
+	                            </th>
+	                        </tr>
+	                        <tr>
+	                            <td rowspan="3" colspan="9" >
+									To <br/>
+                                    The MD,<br/>
+	                                I
+	                                <span t-if="o.employee_id.gender == 'other'">Mr/Ms</span>
+	                                <span t-if="o.employee_id.gender == 'female'">Ms</span>
+	                                <span t-if="o.employee_id.gender == 'male'">Mr</span>
+	                                &#160;
+	                                <strong>
+										<span t-esc="o.employee_id.name"/>
+									</strong>
+									&#160; here by
+	                                request to claim my local expenses for the month of
+	                                <strong>
+										<t t-if="o.date">
+											<span t-esc="datetime.datetime.strptime(str(o.date), '%Y-%m-%d').strftime('%B %Y')"/>
+										</t>
+										<t t-else="">
+											&#160;&#160;
+										</t>
+	                                </strong>
+	                                ,Below is the description and explanation for the expense
+	                                claim No 
+	                                <strong></strong>
+	                                &#160;.
+                                </td>
+	                        </tr>
+	                        <tr>
+                            	<td class="text-center" colspan="3">Bill Date</td>
+                            </tr>
+	                        <tr>
+	                            <td class="text-center" colspan="3">
+									<span  t-if="o.date" t-esc="datetime.datetime.strptime(str(o.date), '%Y-%m-%d').strftime('%d-%m-%Y')"/> 
+								</td>
+	                        </tr>
+	                        <tr>
+	                            <th width='7%' class="text-center">Sl NO</th>
+	                            <th class="text-center">Type of Expense</th>
+	                            <th class="text-center">Description</th>
+	                            <th class="text-center">Quantity</th>
+	                            <th class="text-center">Unit Cost</th>
+	                            <t t-if="so_exist == True">
+	                            	<th class="text-center">SM#</th>
+	                            </t>
+	                            <t t-if="sm_exist == True">
+	                            	<th class="text-center">Salesperson</th>
+	                            </t>
+	                            <th class="text-center">Customer Name</th>
+	                            <th class="text-center">Date</th>
+	                            <th class="text-center">Ref</th>
+	                            <th class="text-center">Amount</th>
+	                         </tr>
+	                        <t t-set="sl_no" t-value="1" />
+	                        <t t-set="grand_total" t-value="0"/>
+	                        <t t-foreach='get_data' t-as='expense'>
+	                        	<t t-set="exp_total" t-value="0" />
+							    <tr t-foreach="get_data[expense].sorted(key=lambda x: x.date)"  t-as='line'>
+		                            <td style="padding:4px" class="text-center">
+										<span t-esc="sl_no"/>
+									</td>
+		                            <td style="padding:4px" class="text-center">
+										<span t-field="line.product_id.name"/>
+									</td>
+									<td style="padding:4px" class="text-center">
+										<span t-field="line.name"/>
+		                                <span t-field="line.description"/><br/>
+		                                <span>
+		                                    <div t-foreach="line.analytic_distribution" t-as="distribution">
+		                                        <t t-esc="line.env['account.analytic.account'].browse(int(distribution))[0].name"/>:
+		                                        <t t-esc="line.analytic_distribution.get(distribution)"/>
+		                                    </div>
+		                                </span>
+		                            </td>
+		                             <td style="padding:4px" class="text-center">
+										<span t-field="line.quantity"/>
+									</td>
+									<td style="padding:4px" class="text-center">
+										<span t-field="line.unit_amount"/>
+									</td>
+		                            <t t-if="so_exist == True">
+			                            <td style="padding:4px" class="text-center">
+											<!--<span t-if="line.sale_order_id" t-field="line.sale_order_id"/>-->
+											<span t-if="line.so_id" t-field="line.so_id.sudo().name"/>
+											<span t-if="line.so_id and line.so_id.sudo().client_order_ref" t-field="line.so_id.sudo().client_order_ref"/>
+										</td>
+									</t>
+									<t t-if="sm_exist == True">
+			                            <td style="padding:4px" class="text-center">
+											<span t-if="line.salesman_id" t-field="line.salesman_id.name"/>
+										</td>
+									</t>
+		                            <td style="padding:4px" class="text-center">
+										<!--<span t-if="line.sale_order_id" t-field="line.sale_order_id.partner_id.name"/>-->
+										<span t-if="line.so_id and line.so_id.partner_id" t-field="line.so_id.partner_id.name"/>
+									</td>
+		                            <td style="padding:4px" class="text-center">
+										<span t-field="line.date"/>
+									</td>
+		                            <td style="padding:4px" class="text-center">
+										<span t-field="line.reference"/>
+									</td>
+	                                <td class="text-center">
+										<span t-field="line.total_amount"
+	                                          t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+	                                </td>
+	                                <t t-set="sl_no" t-value="sl_no + 1" />
+	                                <t t-set="exp_total" t-value="exp_total + line.total_amount" />
+	                                <t t-set="grand_total" t-value="grand_total + line.total_amount" />
+	                            </tr>
+	                            <tr>
+									<td> </td>
+	                                <td> </td>
+	                                <td> </td>
+	                                <td> </td>
+	                                <t t-if="so_exist == True">
+	                                	<td> </td>
+	                                </t>
+	                                <t t-if="sm_exist == True">
+										<td></td>
+									</t>
+	                                <td> </td>
+	                                <td> </td>
+	                                <td> </td>
+	                                <th style="padding:2px" class="text-center">Total</th>
+	                                <th class="text-center" >
+										<span t-esc="exp_total"
+	                                          t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                   </th>
+	                            </tr>
+	                        </t>
+	                        <tr>
+								<t t-if="so_exist == True and sm_exist == True">
+									<th style="padding:2px" colspan="8" class="text-center">Total</th>
+								</t>
+								<t t-elif="so_exist == True and sm_exist == False">
+									<th style="padding:2px" colspan="7" class="text-center">Total</th>
+								</t>
+								<t t-elif="so_exist == False and sm_exist == True">
+									<th style="padding:2px" colspan="7" class="text-center">Total</th>
+								</t>
+								<t t-else="">
+	                            	<th style="padding:2px" colspan="6" class="text-center">Total</th>
+	                            </t>
+	                            <td></td>
+	                            <td></td>
+	                            <th style="padding:2px" class="text-center">
+									<span t-field="o.total_amount"
+	                                      t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                </th>
+	                        </tr>
+                        </table>
+                        <table class="table table-bordered" width="100%" style="font-size: 12px;">
+                             <tr>
+                                <td class="text-center">...........................</td>
+                                <td class="text-center">...........................</td>
+                                <td class="text-center">...........................</td>
+                                <td class="text-center">...........................</td>
+                                <td class="text-center">...........................</td>
+                             </tr>
+                              <tr>
+                                <td>
+									<b>Applicant : </b>
+									<span t-esc="o.employee_id.name"/>
+								</td>
+                                <td>
+									<b>SM/HOD :</b>
+								</td>
+                                <td>
+									<b>Accountant :</b>
+
+								</td>
+                                <td>
+									<b>Operational Manager :</b>
+									
+								</td>
+                                <td>
+									<b>Accounts Manager</b>
+								</td>
+
+                             </tr>
+                              <tr>
+                                <td>Date:</td>
+                                <td>Received By:</td>
+                                <td>Date:</td>
+                                <td> </td>
+                                <td>Date:</td>
+                             </tr>
+                              <tr>
+                                <td> </td>
+                                <td>Date:</td>
+                                <td>Yes/No</td>
+                                <td>Penalty Applicable</td>
+                                <td>Total Deduction:</td>
+                             </tr>
+                              <tr>
+                                <td> </td>
+                                <td> </td>
+                                <td>1% X ___</td>
+                                <td>IF Yes – 1 % x No of Days</td>
+                                <td> </td>
+                             </tr>
+                        </table>
+                        <div>
+                            1. Each bill must be listed, and attested with the name of the applicant and must be arranged
+                             in a chronological order.<br/>
+                            2. All Monthly Customer Education and Training Expenses Claim must be made by on or before 5th
+                             or of every month. Any expenses submitted beyond the deadline will be entitled for 1 % deduction
+                             penalty daily for the number of days delayed on the total reimbursement submitted.<br/>
+                            3. Any claims for older bills beyond a 30 days not be accepted, and your entire expense sheet
+                             will be kept on hold.
+                        </div>
+                    </div>
+                   </div>
+                </t>
+            </t>
+           </t>
+        </template>
+    </data>
+</odoo>
+

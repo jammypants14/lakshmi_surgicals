@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_expense_sheet_form_inherit_sm_expense_ext" model="ir.ui.view">
+            <field name="name">view.hr.expense.sheet.form.inherit.sm.expense.ext</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']" position="before">
+                  <h1>
+                    <field name="sequence_no"/>
+                  </h1> 
+                </xpath>
+                <xpath expr="//form/header/field[@name='state']" position="before">
+                    <button string="Local Expense Claim Report" name="action_expense_claim_report" type="object" class="oe_highlight"/>
+               	</xpath>
+            </field>
+        </record>
+        <record id="hr_expense.action_hr_expense_sheet_all" model="ir.actions.act_window">
+			<field name="context">{ 'searchpanel_default_state': ["draft", "submit", "approve", "post", "done"],'search_default_my_reports': 1}</field>
+	    </record>
+	    <record id="view_hr_expense_sheet_tree_inherit_sm_expense_ext" model="ir.ui.view">
+            <field name="name">view.hr.expense.sheet.tree.inherit.sm.expense.ext</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//list/field[@name='company_id']" position="before">
+                    <field name="sequence_no"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_hr_expense_sheet_search_inherit_sm_expense_ext" model="ir.ui.view">
+            <field name="name">view.hr.expense.sheet.search.inherit.sm.expense.ext</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_sheet_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/field[@name='name']" position="after">
+                    <field string="Expense Ref#" name="sequence_no" filter_domain="['|',('sequence_no','ilike',self),('old_erp_ref','ilike',self)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

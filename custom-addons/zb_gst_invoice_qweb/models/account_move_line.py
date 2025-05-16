@@ -23,6 +23,7 @@ class AccountMoveLine(models.Model):
     igst_amount = fields.Float("IGST Amount", compute="calculate_gst_amount")
     label = fields.Char(string="Label")
     label_text = fields.Text(string="Label")
+    lot_ids = fields.Many2many('stock.lot', string="Serial Number/Lot", store=True)
 
     @api.onchange('name')
     def _onchange_name_set_editable_label(self):
@@ -33,7 +34,8 @@ class AccountMoveLine(models.Model):
         invoice = self.move_id
         sale_orders = self.env['sale.order'].search([('invoice_ids', 'in', invoice.ids)])
         stock_moves = sale_orders.mapped('picking_ids.move_ids_without_package')
-        lots = stock_moves.filtered(lambda m: m.product_id == self.product_id).mapped('lot_ids.name')
+        lots = stock_moves.filtered(lambda m: m.product_id == self.product_id).mapped('lot_ids')
+        self.lot_ids = lots
         
         lines = []
         if internal_ref:
@@ -41,7 +43,7 @@ class AccountMoveLine(models.Model):
         if product_name:
             lines.append(product_name)
         if lots:
-            lines.append("Batch(s): %s" % ', '.join(sorted(set(lots))))
+            lines.append("Batch(s): %s" % ', '.join(sorted(lots.mapped('name'))))
         self.label = "\n".join(lines)
         self.label_text = "\n".join(lines)
         print("-------------------------", lots)

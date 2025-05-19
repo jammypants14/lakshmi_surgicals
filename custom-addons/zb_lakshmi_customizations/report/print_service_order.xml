@@ -100,7 +100,7 @@
 			
 			<br/>
 			
-			<p><strong><u>Terms &amp; Conditions:</u></strong></p>
+			<p><strong><u style="font-size: 13px">Terms &amp; Conditions:</u></strong></p>
 			<div name="footer_section" style="margin-top:5px;">
 				<span t-field="o.notes"/>
  			</div>
@@ -236,7 +236,7 @@
 			
 			<br/>
 			
-			<p><strong><u>Terms &amp; Conditions:</u></strong></p>
+			<p><strong><u style="font-size: 13px">Terms &amp; Conditions:</u></strong></p>
 			<div name="footer_section" style="margin-top:5px;">
 				<span t-field="o.notes"/>
  			</div>

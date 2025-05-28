@@ -22,7 +22,7 @@
 
 {
     'name': 'Expense Extension',
-    'version': '18.0.0.0.0',
+    'version': '18.0.0.0.1',
     'category': 'Expense',
     'summary': 'This Module manages customisation for Expense',
     'description': """
@@ -40,6 +40,7 @@
         'reports/expense_claim_report.xml',
         'reports/training_expense_claim_report.xml',
         'views/hr_expense_sheet_view.xml',
+        'views/hr_expense_view.xml',
         ],
     'test':  [],
     'demo': [],

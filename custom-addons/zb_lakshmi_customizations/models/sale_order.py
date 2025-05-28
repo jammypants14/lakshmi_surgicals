@@ -14,3 +14,5 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
     
     sl_no = fields.Integer("Sl No.")
+    
+    

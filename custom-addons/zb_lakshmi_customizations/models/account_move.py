@@ -5,6 +5,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
     
     bank_details = fields.Html("Bank Details")
+    pod_attached = fields.Boolean("POD Attached")
     
     @api.model
     def create(self, vals):

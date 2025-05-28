@@ -1,4 +1,6 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
+
 
 
 class PurchaseOrder(models.Model):
@@ -13,6 +15,7 @@ class PurchaseOrder(models.Model):
     cust_service_id = fields.Char(string="Service ID")
     cust_tendor_no = fields.Char(string="Tendor No & Name")
     
+    
     @api.onchange('order_line')
     def _onchange_order_line_sl_no(self):
         for idx, line in enumerate(self.order_line, 1):
@@ -22,3 +25,10 @@ class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
     
     sl_no = fields.Integer("Sl No.")
+    
+    @api.model
+    def create(self, vals):
+        # Make name unique per line to prevent merging
+        if vals.get('sale_line_id') and 'name' in vals:
+            vals['name'] += f" (From SO Line ID {vals['sale_line_id']})"
+        return super().create(vals)

@@ -5,6 +5,7 @@ class StockRule(models.Model):
     _inherit = 'stock.rule'
 
 
+    # customization done for lakshmi surgicals to not merge similar products to one from sale order lines to purchase order lines
     @api.model
     def _merge_procurements(self, procurements_to_merge):
 	    """

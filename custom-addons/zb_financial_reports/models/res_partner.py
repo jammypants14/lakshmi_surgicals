@@ -7,7 +7,7 @@ from odoo import fields, models,api,_
 class ResPartner(models.Model):
     _inherit = "res.partner"
     
-    
+    #is_coa_installed =  fields.Boolean('Cash Customer?')
     def action_open_partner_ledger_report(self):
         """Trigger the Partner Ledger Report Wizard from a partner record."""
         

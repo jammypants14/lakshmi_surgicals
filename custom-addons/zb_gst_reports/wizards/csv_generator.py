@@ -65,7 +65,7 @@ class CsvGenerator(models.TransientModel):
 
     def generate_csv(self, rows, title_row, file_name, report_id):
         fp = io.StringIO()
-        writer = csv.writer(fp, quoting=csv.QUOTE_NONE, escapechar='\\')
+        writer = csv.writer(fp, quoting=csv.QUOTE_MINIMAL, escapechar='\\')
         writer.writerow(title_row)
         if self._context.get('b2b_nil', False):
             writer.writerow(["Intra-state supplies to registered persons", rows['intra_state_registered']])

@@ -14,7 +14,7 @@
 
 {
     'name': 'GST Reports',
-    'version': '18.0.0.0',
+    'version': '18.0.0.1',
     'summary': 'GST Reports',
     'description': 'GST Reports',
     'category': '',

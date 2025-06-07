@@ -53,7 +53,7 @@ class HrExpenseSheet(models.Model):
             is_editable = (report.employee_id.user_id == self.env.user and report.state == 'draft') or (is_manager and report.state in ['draft', 'approve'])
             if not is_editable and report.state in ['draft', 'approve']:
                 # expense manager also can't edit if state not in Draft
-                current_managers = report.employee_id.expense_manager_id | report.employee_id.parent_id.user_id | report.employee_id.department_id.manager_id.user_id | report.user_id |report.employee_id.user_id.parent_user_id
+                current_managers = report.employee_id.expense_manager_id | report.employee_id.parent_id.user_id | report.employee_id.department_id.manager_id.user_id | report.user_id 
                 is_editable = (is_approver or self.env.user in current_managers) and report.employee_id.user_id != self.env.user and report.state == 'draft'
             report.is_editable = is_editable
     

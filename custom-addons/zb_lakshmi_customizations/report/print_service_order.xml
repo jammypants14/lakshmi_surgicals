@@ -45,6 +45,7 @@
                 <t t-set="sl_no" t-value="1"/>
                 <t t-set="total_product_amount" t-value="0.0" />
                 <t t-foreach="o.order_line" t-as="line">
+                 <t t-if="line.name not in ['Purchase Discount', 'Exchange Amount']">
                   <tr>
                     <td class="text-center"><t t-esc="sl_no"/></td>
                     <td class="text-center"><span t-field="line.product_id.default_code"/></td>
@@ -52,6 +53,7 @@
                     <td class="text-center"><span t-field="line.product_qty"/></td>                    
                   </tr>
                   <t t-set="sl_no" t-value="sl_no + 1"/>
+                </t>
                 </t>
               
 				  <tr>
@@ -181,6 +183,7 @@
                 <t t-set="sl_no" t-value="1"/>
                 <t t-set="total_product_amount" t-value="0.0" />
                 <t t-foreach="o.order_line" t-as="line">
+                <t t-if="line.name not in ['Purchase Discount', 'Exchange Amount']">
                   <tr>
                     <td class="text-center"><t t-esc="sl_no"/></td>
                     <td class="text-center"><span t-field="line.product_id.default_code"/></td>
@@ -188,6 +191,7 @@
                     <td class="text-center"><span t-field="line.product_qty"/></td>                    
                   </tr>
                   <t t-set="sl_no" t-value="sl_no + 1"/>
+                </t>
                 </t>
               
 				  <tr>

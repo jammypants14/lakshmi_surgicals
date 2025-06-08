@@ -35,7 +35,11 @@
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'views/document_property_views.xml',
-        
+        'views/document_village_views.xml',
+        'views/sub_registrar_views.xml',
+        'views/prior_deed_no_views.xml',
+        'views/prior_deed_year_views.xml',
+        'views/document_hypothecated_views.xml',
         ],
     'test': [],
     'demo': [],

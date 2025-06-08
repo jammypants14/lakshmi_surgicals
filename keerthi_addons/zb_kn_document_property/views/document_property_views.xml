@@ -83,4 +83,8 @@
               name="Property Documents"
               parent="menu_document_root"
               action="action_document_property"/>
+              
+    <menuitem id="menu_document_configuration"
+              name="Configuration"
+              parent="menu_document_root"/>
 </odoo>

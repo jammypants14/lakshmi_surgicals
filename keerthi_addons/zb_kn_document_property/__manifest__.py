@@ -21,7 +21,7 @@
 
 {
     'name': 'Document Property',
-    'version': '18.0.0.1',
+    'version': '18.0.0.3',
     'summary': 'Document Property',
     'description': """
             This module manages document property related features.

@@ -11,11 +11,11 @@ class DocumentProperty(models.Model):
     seller_name = fields.Char(string='Seller Name')
     deed_no = fields.Char(string='Deed No')
     #deed_year = fields.Char(string='Deed Year')
-    old_survey_sy_no = fields.Char(string='Old Survey Sy No')
+    old_survey_sy_no = fields.Char(string='Old Survey No')
     old_survey_sub_division = fields.Char(string='Old Survey Sub Division')
-    re_survey_sy_no = fields.Char(string='Re Survey Sy No')
+    re_survey_sy_no = fields.Char(string='Re Survey No')
     re_survey_sub_division = fields.Char(string='Re Survey Sub Division')
-    extent_area = fields.Char(string='Extent Area')
+    #extent_area = fields.Char(string='Extent Area')
     #prior_deed_no = fields.Char(string='Prior Deed No')
     #prior_deed_year = fields.Char(string='Prior Deed Year')
     thandaper = fields.Char(string='Thandaper')
@@ -33,6 +33,8 @@ class DocumentProperty(models.Model):
     hectare = fields.Char(string='Heactare/Are/Sqaure meter')
     are = fields.Char(string='Are')
     sqaure_meter = fields.Char(string='Sqaure meter')
+    remarks = fields.Text(string='Remarks')
+    
     
     bldg_tax_validity = fields.Date(string='Building Tax Validity')
     land_tax_validity = fields.Date(string='Land Tax Validity')
@@ -42,7 +44,7 @@ class DocumentProperty(models.Model):
         'document_property_deed_no_rel',
         'property_id',
         'deed_no_id',
-        string='Prior Deed Numbers'
+        string='Prior Deed Numbers / Years'
     )
 
     prior_deed_year_ids = fields.Many2many(
@@ -54,8 +56,7 @@ class DocumentProperty(models.Model):
     )
     
     def _get_year_selection(self):
-        current_year = datetime.now().year
-        return [(str(y), str(y)) for y in range(current_year - 10, current_year + 1)]
+        return [(str(y), str(y)) for y in range(1947, 2026)]
         
     deed_year = fields.Selection(
 	    selection=_get_year_selection,

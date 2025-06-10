@@ -12,6 +12,20 @@
             </list>
         </field>
     </record>
+    
+    <record id="view_document_property_search" model="ir.ui.view">
+        <field name="name">document.property.search</field>
+        <field name="model">document.property</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="no"/>
+                <field name="company_id"/>
+                <field name="seller_name"/>
+                <field name="prior_deed_no_ids"/>
+            </search>
+        </field>
+    </record>
 
     <record id="view_document_property_form" model="ir.ui.view">
         <field name="name">document.property.form</field>
@@ -29,12 +43,14 @@
                             <field name="deed_year"/>
                             <!--<field name="prior_deed_no"/>
                             <field name="prior_deed_year"/>-->
-                            <field name="prior_deed_no_ids" widget="many2many_tags"/>
-							<field name="prior_deed_year_ids" widget="many2many_tags"/>
-                            <field name="extent_area"/>
+                            <field name="prior_deed_no_ids" widget="many2many_tags" />
+							<field name="prior_deed_year_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}" invisible="1" />
                             <span>
+                            Extent Area
+                            </span><br />
+                            <span><b>
                             Heactare/Are/Sqaure meter
-                            </span>
+                            </b></span>
                             <div class="o_address_format">
                                 <field name="hectare" class="o_address_city" placeholder="Hectar..." />
                                 <field name="are" class="o_address_state" placeholder="Are..." />
@@ -64,6 +80,7 @@
                         <field name="hypothecated_id"/>
                         <field name="bldg_tax_validity"/>
                         <field name="land_tax_validity"/>
+                        <field name="remarks"/>
                     </group>
                 </sheet>
                 <chatter/>
@@ -74,7 +91,7 @@
     <record id="action_document_property" model="ir.actions.act_window">
         <field name="name">Property Documents</field>
         <field name="res_model">document.property</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,search</field>
     </record>
     
     <menuitem id="menu_document_root" name="Documents"/>

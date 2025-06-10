@@ -42,7 +42,7 @@
 		</record>		
 		
 		<menuitem id="menu_for_prior_deed_no"
-			name="Prior Deed No"
+			name="Prior Deed No / Year"
 			parent='menu_document_configuration'
 			action="action_for_prior_deed_no"
 			sequence="19" />

@@ -349,7 +349,7 @@ class GstReports(models.Model):
 
         return data
     
-    def findall_prefix_numbers(self, prefix):
+    def _findall_prefix_numbers(self, prefix):
         for rec in self:
             if prefix:
                 domain = [
@@ -367,7 +367,8 @@ class GstReports(models.Model):
                 ))
                 
                 # Extract prefix_number values from the result rows
-                line_data = [row['prefix_number'] for row in rows]
+                #line_data = [row['prefix_number'] for row in rows]
+                line_data = [row[0] for row in rows]
                 return line_data
 
     def find_missing(self,lst):

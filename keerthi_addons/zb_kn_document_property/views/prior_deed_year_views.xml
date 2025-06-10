@@ -41,11 +41,11 @@
 			</field>
 		</record>		
 		
-		<menuitem id="menu_for_prior_deed_year"
+		<!--<menuitem id="menu_for_prior_deed_year"
 			name="Prior Deed Year"
 			parent='menu_document_configuration'
 			action="action_for_prior_deed_year"
-			sequence="20" />
+			sequence="20" />-->
 		
 	</data>
 </odoo>

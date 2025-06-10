@@ -17,9 +17,7 @@ class PurchaseOrder(models.Model):
     
     def write(self, vals):
         res = super(PurchaseOrder, self).write(vals)
-        res._onchange_order_line_sl_no()
-        print("hello......................................................")
-        print("lines........................................................",res.order_line)
+        self._onchange_order_line_sl_no()
         return res
     
     @api.onchange('order_line')

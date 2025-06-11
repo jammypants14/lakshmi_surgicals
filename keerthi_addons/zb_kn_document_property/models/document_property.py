@@ -4,6 +4,7 @@ from datetime import datetime
 class DocumentProperty(models.Model):
     _name = 'document.property'
     _description = 'Property Document'
+    _rec_name = 'no'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     no = fields.Char(string='No',readonly=True)

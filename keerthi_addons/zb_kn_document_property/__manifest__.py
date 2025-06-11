@@ -33,6 +33,7 @@
     'depends': ['mail'],
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'data/sequence.xml',
         'views/document_property_views.xml',
         'views/document_village_views.xml',

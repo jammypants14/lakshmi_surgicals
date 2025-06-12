@@ -45,6 +45,12 @@
 						    <button name="export_hsn" string="HSN CSV" type="object" class="btn-success" icon="fa-download" invisible="state != 'ready_to_upload'" />
 						</div>
 						<div style="margin-right:5px;margin-bottom: 5px; display: inline-block;">
+						    <button name="export_b2b_hsn" string="B2B HSN CSV" type="object" class="btn-success" icon="fa-download" invisible="state != 'ready_to_upload'" />
+						</div>
+						<div style="margin-right:5px;margin-bottom: 5px; display: inline-block;">
+						    <button name="export_b2c_hsn" string="B2C HSN CSV" type="object" class="btn-success" icon="fa-download" invisible="state != 'ready_to_upload'" />
+						</div>
+						<div style="margin-right:5px;margin-bottom: 5px; display: inline-block;">
 						    <button name="export_json" string="Json" type="object" class="btn-success" icon="fa-code" invisible="state != 'ready_to_upload'" />
 						</div>
 						<div style="margin-right:5px;margin-bottom: 5px; display: inline-block;">

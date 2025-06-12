@@ -47,6 +47,16 @@ class CsvGenerator(models.TransientModel):
                 file_name = report.report_type + "_HSN_" + str(fields.Date.today()) + '.csv'
                 attachment_id = self.generate_csv(csv_data['hsn'], title_row, file_name, report.id)
                 report.hsn_attachment_id = attachment_id
+            if csv_data.get('b2b_hsn', False):
+                title_row = self.env['gst.report.column'].get_hsn_column()
+                file_name = report.report_type + "_B2B_HSN_" + str(fields.Date.today()) + '.csv'
+                attachment_id = self.generate_csv(csv_data['b2b_hsn'], title_row, file_name, report.id)
+                report.b2b_hsn_attachment_id = attachment_id
+            if csv_data.get('b2c_hsn', False):
+                title_row = self.env['gst.report.column'].get_hsn_column()
+                file_name = report.report_type + "_B2C_HSN_" + str(fields.Date.today()) + '.csv'
+                attachment_id = self.generate_csv(csv_data['b2c_hsn'], title_row, file_name, report.id)
+                report.b2c_hsn_attachment_id = attachment_id
             if csv_data.get('cdnr', False):
                 title_row = self.env['gst.report.column'].get_cdnr_column(report.report_type)
                 file_name = report.report_type + "_CDNR_" + str(fields.Date.today()) + '.csv'

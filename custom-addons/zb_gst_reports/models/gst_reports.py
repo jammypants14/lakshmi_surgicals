@@ -50,6 +50,9 @@ class GstReports(models.Model):
     json_attachment_id = fields.Many2one('ir.attachment', "Json")
     invoice_count_attachment_id = fields.Many2one('ir.attachment', "Invoice Count CSV")
     
+    b2b_hsn_attachment_id = fields.Many2one('ir.attachment', "B2B HSN CSV")
+    b2c_hsn_attachment_id = fields.Many2one('ir.attachment', "B2C HSN CSV")
+    
     def action_set_prefix(self):
         for move in self.cancel_invoice_ids:
             if move.journal_id.gst_prefix_size:
@@ -94,6 +97,8 @@ class GstReports(models.Model):
         self.b2cs_attachment_id = False
         self.export_attachment_id = False
         self.hsn_attachment_id = False
+        self.b2b_hsn_attachment_id = False
+        self.b2c_hsn_attachment_id = False
         self.cdnr_attachment_id = False
         self.json_attachment_id = False
         self.invoice_count_attachment_id = False
@@ -184,6 +189,22 @@ class GstReports(models.Model):
                 'target': 'new',
             }
             
+    def export_b2b_hsn(self):
+        if self.b2b_hsn_attachment_id:
+            return {
+                'type': 'ir.actions.act_url',
+                'url': '/web/content/%s?download=1' % self.b2b_hsn_attachment_id.id,
+                'target': 'new',
+            }
+    
+    def export_b2c_hsn(self):
+        if self.b2c_hsn_attachment_id:
+            return {
+                'type': 'ir.actions.act_url',
+                'url': '/web/content/%s?download=1' % self.b2c_hsn_attachment_id.id,
+                'target': 'new',
+            }
+    
     def export_invoice_count(self):
         if self.invoice_count_attachment_id:
             return {
@@ -221,6 +242,8 @@ class GstReports(models.Model):
         data = {}
         b2cs_data = {}
         hsn_data = {}
+        b2b_hsn_data = {}
+        b2c_hsn_data = {}
         inv_count_dict = {}
         inv_count = 1
         inv_count_post = 0
@@ -239,6 +262,62 @@ class GstReports(models.Model):
                         hsn_data[row['hsn']]['sta'] += row['sta']
                     else:
                         hsn_data.update({
+                            row['hsn']: {
+                                'hsn': int(row['hsn']) - int(row['rate']),
+                                'desc': row['desc'],
+                                'uqc': row['uqc'],
+                                'qty': row['qty'],
+                                'value': row['value'],
+                                'rate':row['rate'],
+                                'taxable': row['taxable'],
+                                'ita': row['ita'],
+                                'cta': row['cta'],
+                                'sta': row['sta'],
+                                'cess': 0,
+                            }
+                        })
+
+            # B2B HSN
+
+            if (inv.move_type == 'out_invoice' or inv.move_type == 'out_refund') and inv.invoice_type in ('b2b', 'cdnr'):
+                for row in self.generate_hsn_rows(self, inv):
+                    if row['hsn'] in b2b_hsn_data:
+                        b2b_hsn_data[row['hsn']]['qty'] += row['qty']
+                        b2b_hsn_data[row['hsn']]['value'] += row['value']
+                        b2b_hsn_data[row['hsn']]['taxable'] += row['taxable']
+                        b2b_hsn_data[row['hsn']]['ita'] += row['ita']
+                        b2b_hsn_data[row['hsn']]['cta'] += row['cta']
+                        b2b_hsn_data[row['hsn']]['sta'] += row['sta']
+                    else:
+                        b2b_hsn_data.update({
+                            row['hsn']: {
+                                'hsn': int(row['hsn']) - int(row['rate']),
+                                'desc': row['desc'],
+                                'uqc': row['uqc'],
+                                'qty': row['qty'],
+                                'value': row['value'],
+                                'rate':row['rate'],
+                                'taxable': row['taxable'],
+                                'ita': row['ita'],
+                                'cta': row['cta'],
+                                'sta': row['sta'],
+                                'cess': 0,
+                            }
+                        })
+            
+            # B2C HSN
+
+            if (inv.move_type == 'out_invoice' or inv.move_type == 'out_refund') and inv.invoice_type in ('b2cs', 'b2cl'):
+                for row in self.generate_hsn_rows(self, inv):
+                    if row['hsn'] in b2c_hsn_data:
+                        b2c_hsn_data[row['hsn']]['qty'] += row['qty']
+                        b2c_hsn_data[row['hsn']]['value'] += row['value']
+                        b2c_hsn_data[row['hsn']]['taxable'] += row['taxable']
+                        b2c_hsn_data[row['hsn']]['ita'] += row['ita']
+                        b2c_hsn_data[row['hsn']]['cta'] += row['cta']
+                        b2c_hsn_data[row['hsn']]['sta'] += row['sta']
+                    else:
+                        b2c_hsn_data.update({
                             row['hsn']: {
                                 'hsn': int(row['hsn']) - int(row['rate']),
                                 'desc': row['desc'],
@@ -328,9 +407,17 @@ class GstReports(models.Model):
                     rows.append([col for col in rate_grp.values()])
             data.update({'b2cs': rows})
         hsn_data = dict(sorted(hsn_data.items(), key=lambda item: item[1]["hsn"]))
+        b2b_hsn_data = dict(sorted(b2b_hsn_data.items(), key=lambda item: item[1]["hsn"]))
+        b2c_hsn_data = dict(sorted(b2c_hsn_data.items(), key=lambda item: item[1]["hsn"]))
         # print ([[col for col in x.values()] for x in hsn_data.values()])
         if hsn_data:
             data.update({'hsn': [[col for col in x.values()] for x in hsn_data.values()]})
+        
+        if b2b_hsn_data:
+            data.update({'b2b_hsn': [[col for col in x.values()] for x in b2b_hsn_data.values()]})
+        
+        if b2c_hsn_data:
+            data.update({'b2c_hsn': [[col for col in x.values()] for x in b2c_hsn_data.values()]})
         
         if inv_count_dict:
             prefix = list(inv_count_dict.keys())

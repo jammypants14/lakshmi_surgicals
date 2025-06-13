@@ -8,7 +8,7 @@
             <style type="text/css">
             * {
               font-family: Cambria, serif !important;
-              font-size: 11px;
+              font-size: 13px;
             }
           </style>
             <div class="row">
@@ -35,7 +35,7 @@
 <!--                  <th style="width:5%; align: center;">Sl No</th>-->
                   <th class="text-center" style="width:5%;">Sl No</th>
                   <th class="text-center" style="width:15%;">CAT No</th>
-                  <th class="text-center" style="width:20%;">Product Description</th>
+                  <th class="text-left" style="width:20%;">Product Description</th>
                   <th class="text-center" style="width:10%;">Qty</th>
                   <th class="text-center" style="width:10%;">Tax %</th>
                   <th class="text-center" style="width:10%;">Base Price</th>
@@ -49,7 +49,7 @@
                   <tr>
                     <td class="text-center"><t t-esc="sl_no"/></td>
                     <td class="text-center"><span t-field="line.product_id.default_code"/></td>
-                    <td class="text-center"><span t-field="line.name"/></td>
+                    <td class="text-left"><span t-field="line.name"/></td>
                     <td class="text-center"><span t-field="line.product_qty"/></td>
                     
                     <td class="text-center" ><span t-field="line.taxes_id"/></td>
@@ -138,7 +138,7 @@
           <style type="text/css">
             * {
               font-family: Cambria, serif !important;
-              font-size: 11px;
+              font-size: 13px;
             }
           </style>
           <div class="page">
@@ -166,7 +166,7 @@
 <!--                  <th style="width:5%; align: center;">Sl No</th>-->
                   <th class="text-center" style="width:5%;">Sl No</th>
                   <th class="text-center" style="width:15%;">CAT No</th>
-                  <th class="text-center" style="width:20%;">Product Description</th>
+                  <th class="text-left" style="width:20%;">Product Description</th>
                   <th class="text-center" style="width:10%;">Qty</th>
                   <th class="text-center" style="width:10%;">Tax %</th>
                   <th class="text-center" style="width:10%;">Base Price</th>
@@ -180,7 +180,7 @@
                   <tr>
                     <td class="text-center"><t t-esc="sl_no"/></td>
                     <td class="text-center"><span t-field="line.product_id.default_code"/></td>
-                    <td class="text-center"><span t-field="line.name"/></td>
+                    <td class="text-left"><span t-field="line.name"/></td>
                     <td class="text-center"><span t-field="line.product_qty"/></td>
                     
                     <td class="text-center" ><span t-field="line.taxes_id"/></td>
@@ -191,7 +191,7 @@
               
 				  <tr>
 				    <td colspan="5" style="text-align:right;"><strong>Total Product Amount</strong></td>
-				    <td colspan="1"><span class="text-center" t-esc="'{:.2f}'.format(total_product_amount)" /></td>
+				    <td colspan="1" class="text-center"><span t-esc="'{:.2f}'.format(total_product_amount)" /></td>
 				  </tr>
               </tbody>
             </table>

@@ -6,7 +6,7 @@
         <style type="text/css">
             * {
               font-family: Cambria, serif !important;
-              font-size: 11px;
+              font-size: 13px;
             }
           </style>
           <div class="page" >
@@ -34,7 +34,7 @@
 <!--                  <th style="width:5%; align: center;">Sl No</th>-->
                   <th class="text-center" style="width:5%;">Sl No</th>
                   <th class="text-center" style="width:15%;">CAT No</th>
-                  <th class="text-center" style="width:20%;">Product Description</th>
+                  <th class="text-left" style="width:20%;">Product Description</th>
                   <th class="text-center" style="width:10%;">Base Price</th>
                   <th class="text-center" style="width:10%;">Qty</th>
                   <th class="text-center" style="width:15%;">Total Price</th>
@@ -47,29 +47,29 @@
                 <t t-foreach="o.order_line" t-as="line">
                   <tr>
                     <td class="text-center"><t t-esc="sl_no"/></td>
-                    <td><span t-field="line.product_id.default_code"/></td>
-                    <td><span t-field="line.name"/></td>
-                    <td><span t-field="line.price_unit"/></td>
-                    <td><span t-field="line.product_qty"/></td>
+                    <td class="text-center"><span t-field="line.product_id.default_code"/></td>
+                    <td class="text-left"><span t-field="line.name"/></td>
+                    <td class="text-center"><span t-field="line.price_unit"/></td>
+                    <td class="text-center"><span t-field="line.product_qty"/></td>
                     
-                    <td><t t-esc="line.price_subtotal"/></td>
-                    <td><span t-field="line.taxes_id"/></td>
-                    <td><t t-esc="line.price_total"/></td>
+                    <td class="text-center"><t t-esc="line.price_subtotal"/></td>
+                    <td class="text-center"><span t-field="line.taxes_id"/></td>
+                    <td class="text-center"><t t-esc="line.price_total"/></td>
                   </tr>
                   <t t-set="sl_no" t-value="sl_no + 1"/>
                 </t>
               
 				  <tr>
 				    <td colspan="7" style="text-align:right;"><strong>Total Amount</strong></td>
-				    <td colspan="1"><span t-field="o.amount_untaxed"/></td>
+				    <td colspan="1" class="text-center"><span t-field="o.amount_untaxed"/></td>
 				  </tr>
 				  <tr>
 				    <td colspan="7" style="text-align:right;"><strong>Total GST Amount</strong></td>
-				    <td colspan="1"><span t-field="o.amount_tax"/></td>
+				    <td colspan="1" class="text-center"><span t-field="o.amount_tax"/></td>
 				  </tr>
 				  <tr>
 				    <td colspan="7" style="text-align:right;"><strong>Total Amount Including Tax</strong></td>
-				    <td colspan="1"><span t-field="o.amount_total"/></td>
+				    <td colspan="1" class="text-center"><span t-field="o.amount_total"/></td>
 				  </tr>
               </tbody>
             </table>
@@ -151,7 +151,7 @@
         <style type="text/css">
             * {
               font-family: Cambria, serif !important;
-              font-size: 11px;
+              font-size: 13px;
             }
           </style>
           <div class="page">
@@ -180,7 +180,7 @@
 <!--                  <th style="width:5%; align: center;">Sl No</th>-->
                   <th class="text-center" style="width:5%;">Sl No</th>
                   <th class="text-center" style="width:15%;">CAT No</th>
-                  <th class="text-center" style="width:20%;">Product Description</th>
+                  <th class="text-left" style="width:20%;">Product Description</th>
                   <th class="text-center" style="width:10%;">Base Price</th>
                   <th class="text-center" style="width:10%;">Qty</th>
                   <th class="text-center" style="width:15%;">Total Price</th>
@@ -193,29 +193,29 @@
                 <t t-foreach="o.order_line" t-as="line">
                   <tr>
                     <td class="text-center"><t t-esc="sl_no"/></td>
-                    <td><span t-field="line.product_id.default_code"/></td>
-                    <td><span t-field="line.name"/></td>
-                    <td><span t-field="line.price_unit"/></td>
-                    <td><span t-field="line.product_qty"/></td>
+                    <td class="text-center"><span t-field="line.product_id.default_code"/></td>
+                    <td class="text-left"><span t-field="line.name"/></td>
+                    <td class="text-center"><span t-field="line.price_unit"/></td>
+                    <td class="text-center"><span t-field="line.product_qty"/></td>
                     
-                    <td><t t-esc="line.price_subtotal"/></td>
-                    <td><span t-field="line.taxes_id"/></td>
-                    <td><t t-esc="line.price_total"/></td>
+                    <td class="text-center"><t t-esc="line.price_subtotal"/></td>
+                    <td class="text-center"><span t-field="line.taxes_id"/></td>
+                    <td class="text-center"><t t-esc="line.price_total"/></td>
                   </tr>
                   <t t-set="sl_no" t-value="sl_no + 1"/>
                 </t>
               
 				  <tr>
 				    <td colspan="7" style="text-align:right;"><strong>Total Amount</strong></td>
-				    <td colspan="1"><span t-field="o.amount_untaxed"/></td>
+				    <td colspan="1" class="text-center"><span t-field="o.amount_untaxed"/></td>
 				  </tr>
 				  <tr>
 				    <td colspan="7" style="text-align:right;"><strong>Total GST Amount</strong></td>
-				    <td colspan="1"><span t-field="o.amount_tax"/></td>
+				    <td colspan="1" class="text-center"><span t-field="o.amount_tax"/></td>
 				  </tr>
 				  <tr>
 				    <td colspan="7" style="text-align:right;"><strong>Total Amount Including Tax</strong></td>
-				    <td colspan="1"><span t-field="o.amount_total"/></td>
+				    <td colspan="1" class="text-center"><span t-field="o.amount_total"/></td>
 				  </tr>
               </tbody>
             </table>

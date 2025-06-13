@@ -121,6 +121,7 @@ class StockRule(models.Model):
                         po.date_order = order_date_planned
             self.env['purchase.order.line'].sudo().create(po_line_values)
             po._onchange_order_line_sl_no()
+            #po.date_order = fields.Date.today()
             
     
     # customization done for lakshmi surgicals to not merge similar products to one from sale order lines to purchase order lines

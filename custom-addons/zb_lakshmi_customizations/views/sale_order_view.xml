@@ -9,9 +9,11 @@
             <xpath expr="//group[@name='sales_person']" position="inside">
                 <field name="show_mrp" />
             </xpath>
-            
             <xpath expr="//field[@name='order_line']/list/field[@name='sequence']" position="after">
             	<field name="sl_no"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_template_attribute_value_ids']" position="after">
+            	<field name="vendor_id" optional="hide" />
             </xpath>
         </field>
     </record>
@@ -23,6 +25,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='team_id']" position="after">
                 <field name="tag_ids" />
+            </xpath>
+            <xpath expr="//search/group" position="inside">
+                <filter string="Vendors" name="product_vendors" domain="[]" context="{'group_by': 'vendor_ids'}"/>        
             </xpath>
         </field>
     </record>

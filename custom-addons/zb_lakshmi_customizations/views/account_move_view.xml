@@ -19,6 +19,9 @@
              <xpath expr="//field[@name='checked']" position="after">
              	<field name="pod_attached"/>
              </xpath>
+             <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='name']" position="after">
+             	<field name="vendor_id" optional="hide" />
+             </xpath>
         </field>
     </record>
     <record id="view_move_search_inherit_against_ref" model="ir.ui.view">
@@ -31,7 +34,9 @@
                  <filter name="pod_attached" string="POD Attached" domain="[('pod_attached','=',True)]"/>
                  <filter name="pod_not_attached" string="POD Not Attached" domain="[('pod_attached','=',False)]"/>
             </xpath>
-            
+            <xpath expr="//search/group" position="inside">
+                <filter string="Vendors" name="product_vendors" domain="[]" context="{'group_by': 'product_vendor_ids'}"/>        
+            </xpath>
             
         </field>
     </record>

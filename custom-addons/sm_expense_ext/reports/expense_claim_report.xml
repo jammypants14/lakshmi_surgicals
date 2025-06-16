@@ -93,6 +93,7 @@
 	                        <t t-set="grand_total" t-value="0"/>
 	                        <t t-foreach='get_data' t-as='expense'>
 	                        	<t t-set="exp_total" t-value="0" />
+	                        	<t t-set="exp_qty" t-value="0" />
 							    <tr t-foreach="get_data[expense].sorted(key=lambda x: x.date)"  t-as='line'>
 		                            <td style="padding:4px" class="text-center">
 										<span t-esc="sl_no"/>
@@ -144,13 +145,16 @@
 	                                </td>
 	                                <t t-set="sl_no" t-value="sl_no + 1" />
 	                                <t t-set="exp_total" t-value="exp_total + line.total_amount" />
+	                                 <t t-set="exp_qty" t-value="exp_qty + line.quantity" />
 	                                <t t-set="grand_total" t-value="grand_total + line.total_amount" />
 	                            </tr>
 	                            <tr>
 									<td> </td>
 	                                <td> </td>
-	                                <td> </td>
-	                                <td> </td>
+	                                <th style="padding:2px" class="text-center">Total Quantity</th>
+	                                <th class="text-center" >
+										<span t-esc="exp_qty"/>
+                                   </th>
 	                                <t t-if="so_exist == True">
 	                                	<td> </td>
 	                                </t>

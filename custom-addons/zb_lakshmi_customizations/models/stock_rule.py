@@ -3,6 +3,8 @@ from collections import defaultdict
 from odoo.tools import float_compare
 from odoo.tools import groupby
 from dateutil.relativedelta import relativedelta
+from odoo.addons.stock.models.stock_rule import ProcurementException
+
 
 
 class StockRule(models.Model):
@@ -120,6 +122,7 @@ class StockRule(models.Model):
                     if fields.Date.to_date(order_date_planned) < fields.Date.to_date(po.date_order):
                         po.date_order = order_date_planned
             self.env['purchase.order.line'].sudo().create(po_line_values)
+            po.resequence_po_lines_by_sale_order()
             po._onchange_order_line_sl_no()
             #po.date_order = fields.Date.today()
             

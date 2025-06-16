@@ -22,7 +22,7 @@
 
 {
     'name': 'Expense Extension',
-    'version': '18.0.0.0.2',
+    'version': '18.0.0.0.3',
     'category': 'Expense',
     'summary': 'This Module manages customisation for Expense',
     'description': """

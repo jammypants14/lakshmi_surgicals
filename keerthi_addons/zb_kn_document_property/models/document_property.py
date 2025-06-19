@@ -13,9 +13,9 @@ class DocumentProperty(models.Model):
     deed_no = fields.Char(string='Deed No')
     #deed_year = fields.Char(string='Deed Year')
     old_survey_sy_no = fields.Char(string='Old Survey No')
-    old_survey_sub_division = fields.Char(string='Old Survey Sub Division')
+    old_survey_sub_division = fields.Char(string='Old Survey Sub Div No.')
     re_survey_sy_no = fields.Char(string='Re Survey No')
-    re_survey_sub_division = fields.Char(string='Re Survey Sub Division')
+    re_survey_sub_division = fields.Char(string='Re Survey Sub Div No.')
     #extent_area = fields.Char(string='Extent Area')
     #prior_deed_no = fields.Char(string='Prior Deed No')
     #prior_deed_year = fields.Char(string='Prior Deed Year')
@@ -56,6 +56,8 @@ class DocumentProperty(models.Model):
         string='Prior Deed Years'
     )
     
+    survey_details_ids = fields.One2many('survey.details', 'property_id',  string="Survey Details")
+    
     def _get_year_selection(self):
         return [(str(y), str(y)) for y in range(1947, 2026)]
         
@@ -64,9 +66,54 @@ class DocumentProperty(models.Model):
 	    string='Deed Year'
 	)
     
+    @api.onchange('survey_details_ids')
+    def _onchange_sl_no_update(self):
+        for prop in self:
+            for idx, line in enumerate(prop.survey_details_ids, 1):
+                line.sl_no = idx
+    
     @api.model
     def create(self, vals):
         vals['no']= self.env['ir.sequence'].next_by_code('document.property')
         vals['seq_generated'] = True
         res=super(DocumentProperty, self).create(vals)
         return res
+
+        
+class SurveyDetails(models.Model):
+    _name = 'survey.details'
+    _description = 'Survey Details'
+    
+    sl_no = fields.Integer(string='Sl No',readonly=True)
+    village_id = fields.Many2one('document.village', string='Village Name')
+    surno = fields.Char(string='Surno')
+    sbdno = fields.Char(string='Sbdno')
+    rsurno = fields.Char(string='RSurno')
+    rsbdno = fields.Char(string='RSbdno')
+    #unit = fields.Selection([('sq_meter', 'Square Meter'),('hectare', 'Hectare'),('acre', 'Acre'),('sq_ft', 'Square Foot'),('sq_yd', 'Square Yard'),('cent', 'Cent'),], string="Unit")
+    unit = fields.Char(string='Unit')
+    hr_acre = fields.Char(string='Hr/Acre')
+    ar_cent = fields.Char(string='Ar/Cent')
+    sqmtr = fields.Char(string='SqM')
+    property_id = fields.Many2one('document.property', string='Property')         
+    
+    @api.model
+    def create(self, vals):
+        record = super(SurveyDetails, self).create(vals)
+        if record.property_id:
+            record.property_id._onchange_sl_no_update()
+        return record
+
+    def unlink(self):
+        properties = self.mapped('property_id')
+        res = super(SurveyDetails, self).unlink()
+        for prop in properties:
+            prop._onchange_sl_no_update()
+        return res
+    
+    
+    
+    
+    
+    
+    

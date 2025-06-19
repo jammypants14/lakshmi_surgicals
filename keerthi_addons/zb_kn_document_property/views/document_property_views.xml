@@ -45,7 +45,7 @@
                             <field name="prior_deed_year"/>-->
                             <field name="prior_deed_no_ids" widget="many2many_tags" />
 							<field name="prior_deed_year_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}" invisible="1" />
-                            <span>
+                            <!--<span>
                             Extent Area
                             </span><br />
                             <span><b>
@@ -55,14 +55,14 @@
                                 <field name="hectare" class="o_address_city" placeholder="Hectar..." />
                                 <field name="are" class="o_address_state" placeholder="Are..." />
                                 <field name="sqaure_meter" class="o_address_zip" placeholder="Sqaure meter..." />
-                            </div>
+                            </div>-->
                             <field name="thandaper"/>
                             
                         </group>
                         <group>
-                            <field name="old_survey_sy_no"/>
+                            <!--<field name="old_survey_sy_no"/>-->
                             <field name="old_survey_sub_division"/>
-                            <field name="re_survey_sy_no"/>
+                            <!--<field name="re_survey_sy_no"/>-->
                             <field name="re_survey_sub_division"/>
                             <field name="block"/>
                             <field name="village_id"/>
@@ -82,6 +82,24 @@
                         <field name="land_tax_validity"/>
                         <field name="remarks"/>
                     </group>
+                    <notebook>
+						<page string="Survey Details">
+							<field name="survey_details_ids" >
+								<list editable="bottom">
+									<field name="sl_no" />
+									<field name="village_id" />
+									<field name="surno"  />
+									<field name="sbdno"  />
+									<field name="rsurno"  />
+									<field name="rsbdno"  />
+									<field name="unit"  />
+									<field name="hr_acre"  />
+									<field name="ar_cent"  />
+									<field name="sqmtr"  />
+								</list>
+							</field>
+						</page>
+					</notebook>
                 </sheet>
                 <chatter/>
             </form>

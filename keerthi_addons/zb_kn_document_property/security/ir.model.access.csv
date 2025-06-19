@@ -5,3 +5,4 @@ access_sub_registrar,access_sub_registrar,model_sub_registrar,base.group_user,1,
 access_prior_deed_no,acess_prior.deed.no,model_prior_deed_no,base.group_user,1,1,1,1
 access_prior_deed_year,acess_prior.deed.year,model_prior_deed_year,base.group_user,1,1,1,1
 access_document_hypothecated,acess_document.hypothecated,model_document_hypothecated,base.group_user,1,1,1,1
+access_survey_details,access_survey.details,model_survey_details,base.group_user,1,1,1,1

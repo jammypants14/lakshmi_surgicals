@@ -12,6 +12,12 @@ class AccountMove(models.Model):
         string='Vendors',
         store=True
     )
+    pending_reason_id = fields.Many2one('pod.reason',string="Pending Reason")
+    current_status =fields.Char(string="Current Status")
+    last_action_update_date = fields.Datetime(string="Last Note Update On")
+    next_action_update_date = fields.Date(string="Next Action Date")
+    invoice_responsible_id = fields.Many2one('res.users',string="Responsible")
+
 
     @api.depends('invoice_line_ids.vendor_id')
     def _compute_vendor_ids(self):

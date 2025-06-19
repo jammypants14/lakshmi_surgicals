@@ -16,8 +16,16 @@
              <xpath expr="//field[@name='narration']" position="after">
              <field name="bank_details"/>
              </xpath>
-             <xpath expr="//field[@name='checked']" position="after">
-             	<field name="pod_attached"/>
+             <xpath expr="//group[@id='header_left_group']" position="inside">
+             	<separator string="Payment Updates" />
+                	<field name="pod_attached" />
+                	<field name="pending_reason_id" />  
+                    <field name="current_status" />  
+             </xpath>
+              <xpath expr="//group[@id='header_right_group']" position="inside">
+                    <field name="last_action_update_date" />  
+                    <field name="next_action_update_date" />  
+                    <field name="invoice_responsible_id" />  
              </xpath>
              <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='name']" position="after">
              	<field name="vendor_id" optional="hide" />

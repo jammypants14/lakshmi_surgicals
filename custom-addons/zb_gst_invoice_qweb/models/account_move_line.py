@@ -43,7 +43,14 @@ class AccountMoveLine(models.Model):
         if product_name:
             lines.append(product_name)
         if lots:
-            lines.append("Batch(s): %s" % ', '.join(sorted(lots.mapped('name'))))
+            lines.append("Batch(s):")
+            for lot in lots.sorted(key=lambda l: l.name):
+                exp_date = lot.expiration_date or lot.use_date
+                if exp_date:
+                    exp_str = exp_date.strftime('%d/%m/%Y')
+                    lines.append(f"{lot.name} - Exp: {exp_str}")
+                else:
+                    lines.append(f"{lot.name}")
         self.label = "\n".join(lines)
         self.label_text = "\n".join(lines)
         print("-------------------------", lots)

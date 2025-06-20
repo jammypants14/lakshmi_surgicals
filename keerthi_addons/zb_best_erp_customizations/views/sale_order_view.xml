@@ -11,5 +11,16 @@
                 </xpath>
 		     </field>
 		 </record>
+		 
+		 <record id="view_sale_list_inherit_best_erp" model="ir.ui.view">
+	        <field name="name">view.sale.list.inherit.best.erp</field>
+	        <field name="model">sale.order</field>
+	        <field name="inherit_id" ref="sale.sale_order_tree"/>
+	        <field name="arch" type="xml">
+				<xpath expr="//field[@name='commitment_date']" position='before'>
+                    <field name="date_order" optional="show" readonly="state in ['cancel', 'sale']"/>
+                </xpath>
+		     </field>
+		 </record>
 	</data>
 </odoo>

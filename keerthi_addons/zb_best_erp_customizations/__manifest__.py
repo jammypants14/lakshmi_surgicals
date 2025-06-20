@@ -21,7 +21,7 @@
 
 {
     'name': 'Best ERP Customizations',
-    'version': '18.0.0.0',
+    'version': '18.0.0.1',
     'summary': 'Best ERP Customizations',
     'description': """
             Customizations for Best ERP Project.

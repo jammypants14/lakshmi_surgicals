@@ -35,6 +35,8 @@ class DocumentProperty(models.Model):
     are = fields.Char(string='Are')
     sqaure_meter = fields.Char(string='Sqaure meter')
     remarks = fields.Text(string='Remarks')
+    survey_remarks = fields.Text(string='Survey Remarks')
+    building_remarks = fields.Text(string='Building Remarks')
     
     
     bldg_tax_validity = fields.Date(string='Building Tax Validity')
@@ -57,6 +59,19 @@ class DocumentProperty(models.Model):
     )
     
     survey_details_ids = fields.One2many('survey.details', 'property_id',  string="Survey Details")
+    building_details_ids = fields.One2many('building.details', 'property_id', string='Building Details')
+    total_survey_area = fields.Float(string='Total Survey Area', compute='_compute_total_survey_area', store=True)
+    total_building_area = fields.Float(string='Total Building Area', compute='_compute_total_building_area', store=True)
+    
+    @api.depends('building_details_ids.square_feet')
+    def _compute_total_building_area(self):
+        for record in self:
+            record.total_building_area = sum(line.square_feet for line in record.building_details_ids)
+    
+    @api.depends('survey_details_ids.total_value')
+    def _compute_total_survey_area(self):
+        for record in self:
+            record.total_survey_area = sum(line.total_value for line in record.survey_details_ids)
     
     def _get_year_selection(self):
         return [(str(y), str(y)) for y in range(1947, 2026)]
@@ -70,6 +85,13 @@ class DocumentProperty(models.Model):
     def _onchange_sl_no_update(self):
         for prop in self:
             for idx, line in enumerate(prop.survey_details_ids, 1):
+                line.sl_no = idx
+    
+    
+    @api.onchange('building_details_ids')
+    def _onchange_sl_no__building_update(self):
+        for prop in self:
+            for idx, line in enumerate(prop.building_details_ids, 1):
                 line.sl_no = idx
     
     @api.model
@@ -95,7 +117,8 @@ class SurveyDetails(models.Model):
     hr_acre = fields.Char(string='Hr/Acre')
     ar_cent = fields.Char(string='Ar/Cent')
     sqmtr = fields.Char(string='SqM')
-    property_id = fields.Many2one('document.property', string='Property')         
+    property_id = fields.Many2one('document.property', string='Property')  
+    total_value = fields.Float(string='Total', compute='_compute_total_value')       
     
     @api.model
     def create(self, vals):
@@ -111,9 +134,57 @@ class SurveyDetails(models.Model):
             prop._onchange_sl_no_update()
         return res
     
+    @api.depends('ar_cent', 'sqmtr')
+    def _compute_total_value(self):
+        for rec in self:
+            try:
+                ar_str = str(int(float(rec.ar_cent or 0)))
+                sq_str = str(int(float(rec.sqmtr or 0))).rstrip('0') or '0'
+                rec.total_value = float(f"{ar_str}.{sq_str}")
+            except (ValueError, TypeError):
+                rec.total_value = 0.0
+                
+    @api.onchange('property_id')
+    def _onchange_property_id(self):
+        # Set serial number
+        if self.property_id:
+            existing_lines = self.property_id.survey_details_ids
+            self.sl_no = len(existing_lines) + 1
+
+    @api.onchange('sl_no')
+    def _onchange_sl_no_set_village(self):
+        if self.sl_no > 1 and self.property_id:
+            first_line = self.property_id.survey_details_ids.filtered(lambda r: r.sl_no == 1)
+            if first_line:
+                self.village_id = first_line.village_id
     
+
+
+class BuildingDetails(models.Model):
+    _name = 'building.details'
+    _description = 'Building Details'
+
+    sl_no = fields.Integer(string='Sl No', readonly=True)
+    building_no = fields.Char(string='Building No')
+    building_ward = fields.Char(string='Building Ward')
+    location = fields.Char(string='Location')
+    square_feet = fields.Float(string='Square Feet')
+    bldng_tax_validity = fields.Date(string='Building Tax Validity')
+    property_id = fields.Many2one('document.property', string='Property')
     
+    @api.model
+    def create(self, vals):
+        record = super(BuildingDetails, self).create(vals)
+        if record.property_id:
+            record.property_id._onchange_sl_no__building_update()
+        return record
+
+    def unlink(self):
+        properties = self.mapped('property_id')
+        res = super(BuildingDetails, self).unlink()
+        for prop in properties:
+            prop._onchange_sl_no__building_update()
+        return res
     
-    
-    
+
     

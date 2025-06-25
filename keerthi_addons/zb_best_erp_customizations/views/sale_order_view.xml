@@ -18,7 +18,7 @@
 	        <field name="inherit_id" ref="sale.sale_order_tree"/>
 	        <field name="arch" type="xml">
 				<xpath expr="//field[@name='commitment_date']" position='before'>
-                    <field name="date_order" optional="show" readonly="state in ['cancel', 'sale']"/>
+                    <field name="date_order" optional="hide" readonly="state in ['cancel', 'sale']"/>
                 </xpath>
 		     </field>
 		 </record>

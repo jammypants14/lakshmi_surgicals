@@ -61,9 +61,9 @@
                         </group>
                         <group>
                             <!--<field name="old_survey_sy_no"/>-->
-                            <field name="old_survey_sub_division"/>
+                            <!--<field name="old_survey_sub_division"/>-->
                             <!--<field name="re_survey_sy_no"/>-->
-                            <field name="re_survey_sub_division"/>
+                           <!-- <field name="re_survey_sub_division"/>-->
                             <field name="block"/>
                             <field name="village_id"/>
                             <field name="sub_registrar_id"/>
@@ -72,13 +72,13 @@
                         </group>
                     </group>
                     <group string="Utilities and Tax">
-                        <field name="building_no"/>
-                        <field name="building_ward"/>
+                      <!--  <field name="building_no"/>
+                        <field name="building_ward"/>-->
                         <field name="ec_upto"/>
                         <field name="water_connection_no"/>
                         <field name="electricity_consumer_no"/>
                         <field name="hypothecated_id"/>
-                        <field name="bldg_tax_validity"/>
+                       <!-- <field name="bldg_tax_validity"/>-->
                         <field name="land_tax_validity"/>
                         <field name="remarks"/>
                     </group>
@@ -88,17 +88,66 @@
 								<list editable="bottom">
 									<field name="sl_no" />
 									<field name="village_id" />
-									<field name="surno"  />
-									<field name="sbdno"  />
-									<field name="rsurno"  />
-									<field name="rsbdno"  />
+									<field name="surno" string="Old Survey No."  />
+									<field name="sbdno" string="Old Survey SubDiv No."  />
+									<field name="rsurno" string="Re Survey No."  />
+									<field name="rsbdno" string="Re Survey SubDiv No."   />
 									<field name="unit"  />
 									<field name="hr_acre"  />
 									<field name="ar_cent"  />
 									<field name="sqmtr"  />
 								</list>
 							</field>
+							
+							<group col="12" class="overflow-hidden">
+                            	<group colspan="8">
+                                        <field name="survey_remarks" placeholder="Enter your remarks" string="Remarks" />
+                                </group>
+                                <group colspan="4">
+                                    <div class="o_form_view" style="margin-top: -10px;">
+						    			<div style="display: flex; justify-content: flex-end; padding-top: 5px;">
+						        			<span style="flex: 1; text-align: right; font-weight: bold; padding-right: 10px;">
+						            			Total:
+						        			</span>
+						        			<span style="width: 150px; padding-left: 50px;">
+						            			<field name="total_survey_area" readonly="1" nolabel="1"/>
+						        			</span>
+						    			</div>
+									</div>                                        
+                             	</group>
+                             </group>
 						</page>
+						<page string="Building Details">
+					        <field name="building_details_ids">
+					            <list editable="bottom">
+					                <field name="sl_no"/>
+					                <field name="building_no"/>
+					                <field name="building_ward"/>
+					                <field name="location"/>
+					                <field name="bldng_tax_validity"/>
+					                <field name="square_feet"/>
+					                
+					            </list>
+					        </field>
+					        
+					        <group col="12" class="overflow-hidden">
+                            	<group colspan="8">
+                                        <field name="building_remarks" placeholder="Enter your remarks" string="Remarks" />
+                                </group>
+                                <group colspan="4">
+                                    <div class="o_form_view" style="margin-top: -10px;">
+						    			<div style="display: flex; justify-content: flex-end; padding-top: 5px;">
+						        			<span style="flex: 1; text-align: right; font-weight: bold; padding-right: 10px;">
+						            			Total:
+						        			</span>
+						        			<span style="width: 150px; padding-left: 70px;">
+						            			<field name="total_building_area" readonly="1" nolabel="1"/>
+						        			</span>
+						    			</div>
+									</div>                                        
+                             	</group>
+                             </group>
+					    </page>
 					</notebook>
                 </sheet>
                 <chatter/>

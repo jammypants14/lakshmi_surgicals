@@ -1,8 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_document_property,access_document_property,model_document_property,base.group_user,1,1,1,1
+access_document_property,access_document_property,model_document_property,base.group_user,1,0,0,0
 access_document_village,access_document_village,model_document_village,base.group_user,1,1,1,1
 access_sub_registrar,access_sub_registrar,model_sub_registrar,base.group_user,1,1,1,1
 access_prior_deed_no,acess_prior.deed.no,model_prior_deed_no,base.group_user,1,1,1,1
 access_prior_deed_year,acess_prior.deed.year,model_prior_deed_year,base.group_user,1,1,1,1
 access_document_hypothecated,acess_document.hypothecated,model_document_hypothecated,base.group_user,1,1,1,1
 access_survey_details,access_survey.details,model_survey_details,base.group_user,1,1,1,1
+access_building_details,access_building.details,model_building_details,base.group_user,1,1,1,1
+access_document_property_edit_access,access_document_property_edit_access,model_document_property,zb_kn_document_property.group_edit_documents,1,1,1,1
+access_document_property_admin_access,access_document_property_admin_access,model_document_property,base.group_system,1,1,1,1

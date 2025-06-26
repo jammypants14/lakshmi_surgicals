@@ -9,6 +9,9 @@
 				<xpath expr="//field[@name='validity_date']" position='attributes'>
                     <attribute name="invisible">0</attribute>
                 </xpath>
+                <xpath expr="//field[@name='order_line']/list/field[@name='price_unit']" position='after'>
+                     <field name="product_unit_cost" groups="zb_best_erp_customizations.group_view_cost" optional="hide" />
+                </xpath>
 		     </field>
 		 </record>
 		 

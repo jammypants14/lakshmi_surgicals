@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record id="view_invoice_form_inherit_best_erp" model="ir.ui.view">
+	        <field name="name">view.invoice.form.inherit.best.erp</field>
+	        <field name="model">account.move</field>
+	        <field name="inherit_id" ref="account.view_move_form"/>
+	        <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='price_unit']" position='after'>
+                     <field name="product_unit_cost" groups="zb_best_erp_customizations.group_view_cost" optional="hide" />
+                </xpath>
+		     </field>
+		 </record>
+	</data>
+</odoo>

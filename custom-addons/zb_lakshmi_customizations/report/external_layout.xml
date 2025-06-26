@@ -111,9 +111,9 @@
 		  </div>
             <div class="o_footer_content d-flex border-top pt-2">
                 <div class="text-end text-muted">
-                    <div t-if="report_type == 'pdf'"> <img t-att-src="'zb_lakshmi_customizations/static/src/img/Asset_6.png'"
+                    <div t-if="report_type == 'pdf'"> <img t-att-src="'zb_lakshmi_customizations/static/src/img/footer.png'"
            				alt="Footer Image"
-           				style="min-height: 100px;" /></div>
+           				style="max-height: 100px;" /></div>
                    
                 </div>
             </div>
@@ -212,9 +212,9 @@
 		  </div>
             <div class="o_footer_content d-flex border-top pt-2">
                 <div class="text-end text-muted">
-                    <div t-if="report_type == 'pdf'"> <img t-att-src="'zb_lakshmi_customizations/static/src/img/Asset_6.png'"
+                    <div t-if="report_type == 'pdf'"> <img t-att-src="'zb_lakshmi_customizations/static/src/img/footer.png'"
            				alt="Footer Image"
-           				style="min-height: 100px;" /></div>
+           				style="max-height: 100px;" /></div>
                    
                 </div>
             </div>
@@ -271,9 +271,9 @@
 		  </div>
             <div class="o_footer_content d-flex border-top pt-2">
                 <div class="text-end text-muted">
-                    <div t-if="report_type == 'pdf'"> <img t-att-src="'zb_lakshmi_customizations/static/src/img/Asset_4.png'"
+                    <div t-if="report_type == 'pdf'"> <img t-att-src="'zb_lakshmi_customizations/static/src/img/footer.png'"
            				alt="Footer Image"
-           				style="min-height: 100px;" /></div>
+           				style="max-height: 100px;" /></div>
                    
                 </div>
             </div>
@@ -350,9 +350,9 @@
 		  </div>
             <div class="o_footer_content d-flex border-top pt-2">
                 <div class="text-end text-muted">
-                    <div t-if="report_type == 'pdf'"> <img t-att-src="'zb_lakshmi_customizations/static/src/img/Asset_4.png'"
+                    <div t-if="report_type == 'pdf'"> <img t-att-src="'zb_lakshmi_customizations/static/src/img/footer.png'"
            				alt="Footer Image"
-           				style="min-height: 100px;" /></div>
+           				style="max-height: 100px;" /></div>
                    
                 </div>
             </div>

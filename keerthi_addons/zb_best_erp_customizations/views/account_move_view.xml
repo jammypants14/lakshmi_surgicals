@@ -9,6 +9,15 @@
                 <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='price_unit']" position='after'>
                      <field name="product_unit_cost" groups="zb_best_erp_customizations.group_view_cost" optional="hide" />
                 </xpath>
+                <xpath expr="//button[@name='button_cancel'][1]" position='attributes'>
+                    <attribute name="groups">zb_best_erp_customizations.group_draft_cancel_access</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_cancel'][2]" position='attributes'>
+                    <attribute name="groups">zb_best_erp_customizations.group_draft_cancel_access</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_draft']" position='attributes'>
+                    <attribute name="groups">zb_best_erp_customizations.group_draft_cancel_access</attribute>
+                </xpath>
 		     </field>
 		 </record>
 	</data>

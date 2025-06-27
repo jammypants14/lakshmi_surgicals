@@ -22,7 +22,7 @@
 {
     "name": "Lakshmi Surgicals Customizations ",
     "summary": "Lakshmi Surgicals Customizations",
-    "version": "18.0.0.27",
+    "version": "18.0.0.28",
     "category": "Accounting",
     "website": "http://www.zbeanztech.com/",
     "description": """
@@ -33,7 +33,7 @@
     ],
     "author": "ZestyBeanz Technologies",
     "license": "LGPL-3",
-    "depends": ['zb_gst_invoice_qweb', 'account', 'purchase'],
+    "depends": ['zb_gst_invoice_qweb', 'account', 'purchase', 'stock', 'sale', 'base', 'hr'],
     "data": [
         'security/ir.model.access.csv',
         'report/invoice_report.xml',
@@ -50,9 +50,7 @@
         'views/res_users_view.xml',
         'views/purchase_order_view.xml',
         'views/stock_picking.xml',
-        
-        
-        
+        'views/hr_leave_allocation_view.xml', 
     ],
     'installable': True,
     'auto_install': False,

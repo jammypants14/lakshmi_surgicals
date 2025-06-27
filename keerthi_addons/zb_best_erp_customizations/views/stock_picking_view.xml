@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record id="view_stock_picking_form_inherit_best_erp" model="ir.ui.view">
+	        <field name="name">view.stock.picking.form.inherit.best.erp</field>
+	        <field name="model">stock.picking</field>
+	        <field name="inherit_id" ref="stock.view_picking_form"/>
+	        <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position='attributes'>
+                    <attribute name="groups">zb_best_erp_customizations.group_draft_cancel_access</attribute>
+                </xpath>
+		     </field>
+		 </record>
+	</data>
+</odoo>

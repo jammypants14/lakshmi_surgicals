@@ -6,3 +6,4 @@ from . import sale_order
 from . import stock_rule
 from . import pod_reason
 from . import hr_attendance
+from . import hr_leave_allocation

@@ -3,4 +3,7 @@
 	<record id="group_view_cost" model="res.groups">
 		<field name="name">View Cost Group</field>
 	</record>
+	<record id="group_draft_cancel_access" model="res.groups">
+		<field name="name">Draft and Cancel Access</field>
+	</record>
 </odoo>

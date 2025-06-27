@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+	    <record id="view_hr_leave_allocation_inherit_zb_lakshmi_cust" model="ir.ui.view">
+	        <field name="name">hr.leave.allocation.form.inherit.zb.lakshmi.cust</field>
+	        <field name="model">hr.leave.allocation</field>
+	        <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_form_manager"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='allocation_type']" position="after">
+	                <div class="o_td_label">
+                    	<label for="no_validity_days" />
+                    </div>
+                    <div name="validity_display">
+       		             <field name="no_validity_days" nolabel="1" style="width: 5rem;"/>
+                         <span class="ml8">Days</span>
+                    </div>
+	            </xpath>
+	            <xpath expr="//field[@name='date_from']" position='attributes'>
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                 <xpath expr="//field[@name='date_to']" position='attributes'>
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+	        </field>
+	    </record>
+	</data>
+</odoo>

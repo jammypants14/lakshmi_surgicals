@@ -21,7 +21,7 @@
 
 {
     'name': 'Best ERP Customizations',
-    'version': '18.0.0.2',
+    'version': '18.0.0.4',
     'summary': 'Best ERP Customizations',
     'description': """
             Customizations for Best ERP Project.
@@ -29,12 +29,14 @@
     'category':'Purchase',
     'author': 'ZestyBeanz Technologies',
     'website': 'www.zbeanztech.com',
-    'depends' : ['purchase', 'sale', 'account'],
+    'depends' : ['purchase', 'sale', 'account', 'sale_margin', 'stock'],
     'data': [
         'security/security.xml',		
 		'views/purchase_view.xml',
 		'views/sale_order_view.xml',
 		'views/account_move_view.xml',
+		'views/account_payment.xml',
+		'views/stock_picking_view.xml',
         ],
     'test': [],
     'demo': [],

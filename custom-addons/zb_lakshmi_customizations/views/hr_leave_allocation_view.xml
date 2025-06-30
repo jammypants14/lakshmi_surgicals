@@ -15,8 +15,8 @@
                          <span class="ml8">Days</span>
                     </div>
 	            </xpath>
-	            <xpath expr="//field[@name='date_from']" position='attributes'>
-                    <attribute name="readonly">1</attribute>
+	            <xpath expr="//label[@for='date_from']" position='attributes'>
+                    <attribute name="string">Date</attribute>
                 </xpath>
                  <xpath expr="//field[@name='date_to']" position='attributes'>
                     <attribute name="readonly">1</attribute>

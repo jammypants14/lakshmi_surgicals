@@ -10,7 +10,7 @@ class HRLeaveAllocation(models.Model):
     def action_approve(self):
         for alloc in self:
             base_date = alloc.date_from or fields.Date.today()
-            alloc.date_to = base_date + timedelta(days=120)
+            alloc.date_to = base_date + timedelta(days=121)
         return super(HRLeaveAllocation, self).action_approve()
     
     def set_validity_days(self):

@@ -23,5 +23,13 @@
                 </xpath>
 	        </field>
 	    </record>
+	    
+	    <record id="hr_holidays.hr_holidays_menu_manager_approve_allocations" model="ir.ui.menu">
+	        <field name="name">Special Attendance</field>
+	    </record>
+	    
+	    <!--<record id="hr_holidays.hr_leave_allocation_action_approve_department" model="ir.actions.act_window">
+			<field name="name">Special Attendance</field>
+		</record>-->
 	</data>
 </odoo>

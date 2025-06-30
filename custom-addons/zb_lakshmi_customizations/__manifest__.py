@@ -22,7 +22,7 @@
 {
     "name": "Lakshmi Surgicals Customizations ",
     "summary": "Lakshmi Surgicals Customizations",
-    "version": "18.0.0.28",
+    "version": "18.0.0.29",
     "category": "Accounting",
     "website": "http://www.zbeanztech.com/",
     "description": """

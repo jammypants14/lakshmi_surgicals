@@ -503,6 +503,12 @@
 	                </span>
 	                <br />
 	            </t>
+                <t t-if="o.company_id.l10n_in_pan">
+	                <span>PAN:
+	                    <t t-esc="o.company_id.l10n_in_pan" />
+	                </span>
+	                <br />
+	            </t>
 	            <span t-if="o.company_id.company_registry">CIN:
 	                <t t-esc="o.company_id.company_registry" />
 	            </span>
@@ -606,6 +612,13 @@
                 <span>
                     GSTIN/UIN:
                     <t t-esc="o.partner_id.vat" />
+                </span>
+                <br />
+            </t>
+            <t t-if="o.partner_id.l10n_in_pan">
+                <span>
+                    PAN:
+                    <t t-esc="o.partner_id.l10n_in_pan" />
                 </span>
                 <br />
             </t>

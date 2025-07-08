@@ -7,20 +7,19 @@
 	        <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_form_manager"/>
 	        <field name="arch" type="xml">
 	            <xpath expr="//field[@name='allocation_type']" position="after">
-	                <div class="o_td_label" invisible="not is_compensatory">
+	                <div class="o_td_label">
                     	<label for="no_validity_days" />
                     </div>
-                    <div name="validity_display" invisible="not is_compensatory">
+                    <div name="validity_display">
        		             <field name="no_validity_days" nolabel="1" style="width: 5rem;"/>
                          <span class="ml8">Days</span>
                     </div>
-                    <field name="is_compensatory" invisible="1" />
 	            </xpath>
 	            <xpath expr="//label[@for='date_from']" position='attributes'>
                     <attribute name="string">Date</attribute>
                 </xpath>
                  <xpath expr="//field[@name='date_to']" position='attributes'>
-                    <attribute name="readonly">is_compensatory</attribute>
+                    <attribute name="readonly">1</attribute>
                 </xpath>
 	        </field>
 	    </record>

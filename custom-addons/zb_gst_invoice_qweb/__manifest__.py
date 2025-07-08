@@ -14,7 +14,7 @@
 
 {
     'name': 'GST Invoice Print QWeb',
-    'version': '18.0.0.20',
+    'version': '18.0.0.21',
     'category': '',
     'summary': 'zb_gst_invoice_qweb',
     "license": "LGPL-3",
